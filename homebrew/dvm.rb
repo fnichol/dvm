@@ -3,7 +3,7 @@ require 'formula'
 class Dvm < Formula
   homepage 'http://fnichol.github.io/dvm'
   url 'https://github.com/fnichol/dvm/archive/v0.1.0.tar.gz'
-  sha1 ''
+  sha1 '55562579262edfb1aca6a96568e561e362b4d96b'
 
   head 'https://github.com/fnichol/dvm.git'
 
