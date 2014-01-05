@@ -1,0 +1,124 @@
+#!//usr/bin/env bash
+DVM_VERSION="0.1.0"
+set -e
+[ -n "$DEBUG" ] && set -x
+
+usage() {
+  printf "
+Usage: $(basename $0) [-v|-h] command [<args>]
+
+Options
+
+  --version, -v - Print the version and exit
+  --help, -h    - Display CLI help (this output)
+
+Commands
+
+  check           Ensure that required software is installed and present
+  destroy         Stops and deletes all traces of the vagrant machine
+  env             Outputs environment variables for Docker to connect remotely
+  halt, stop      Stops the vagrant machine
+  resume          Resume the suspended vagrant machine
+  ssh             Connects to the machine via SSH
+  status          Outputs status of the vagrant machine
+  suspend, pause  Suspends the machine
+  up, start       Starts and provisions the vagrant environment
+  vagrant         Issue subcommands directly to the vagrant CLI
+
+"
+}
+
+banner() {
+  echo "-----> $*"
+}
+
+fail() {
+  echo ">>>>>> $*" >&2
+  exit 1
+}
+
+resolve_link() {
+  $(type -p greadlink readlink | head -1) "$1"
+}
+
+abs_dirname() {
+  local cwd="$(pwd)"
+  local path="$1"
+
+  while [ -n "$path" ]; do
+    cd "${path%/*}"
+    local name="${path##*/}"
+    path="$(resolve_link "$name" || true)"
+  done
+
+  pwd
+  cd "$cwd"
+}
+
+project_path() {
+  local parent_path="$(dirname $(abs_dirname $0))"
+  local home_dvm_path="$HOME/.dvm"
+
+  if [ -f "$VAGRANTFILE" ] ; then
+    echo "$(abs_dirname $VAGRANTFILE)"
+  elif [ -f "$parent_path/Vagrantfile" ] ; then
+    echo "$parent_path"
+  elif [ -f "$home_dvm_path/Vagrantfile" ] ; then
+    echo "$home_dvm_path"
+  else
+    fail "No Vagrantfile found in $parent_path or $home_dvm_path"
+  fi
+}
+
+load_conf() {
+  if [ -f "$project_path/dvm.conf" ] ; then
+    source $project_path/dvm.conf
+  fi
+}
+
+exec_vagrant() {
+  load_conf
+
+  if [ -f "$VAGRANTFILE" ] ; then
+    export VAGRANT_VAGRANTFILE="$(basename $VAGRANTFILE)"
+  fi
+
+  cd $project_path
+  exec vagrant $*
+}
+
+check() {
+  if command -v docker >/dev/null ; then
+    banner "Docker install detected"
+  else
+    fail "Command 'docker' was not found in PATH. Please install and retry."
+  fi
+  if command -v vagrant >/dev/null ; then
+    banner "Vagrant install detected"
+  else
+    fail "Command 'vagrant' was not found in PATH. Please install and retry."
+  fi
+  banner 'Ready to go!'
+}
+
+setup_env() {
+  load_conf
+  echo "export DOCKER_HOST=tcp://127.0.0.1:${DOCKER_PORT:-5252}"
+}
+
+project_path=$(project_path)
+
+case "$1" in
+  --version|-v)         echo "$(basename $0): $DVM_VERSION";;
+  check|c*)             check;;
+  destroy|d*)           shift; exec_vagrant destroy $*;;
+  env|e*)               setup_env;;
+  halt|h*|stop|sto*)    shift; exec_vagrant halt $*;;
+  resume|r*)            shift; exec_vagrant resume $*;;
+  ssh|ss*)              shift; exec_vagrant ssh $*;;
+  status|stat*)         shift; exec_vagrant status $*;;
+  suspend|su*|pause|p)  shift; exec_vagrant suspend $*;;
+  up|u*|start|star*)    shift; exec_vagrant up $*;;
+  vagrant|v*)           shift; exec_vagrant $*;;
+  *)                    usage; exit 1;;
+esac
