@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>dvm by fnichol</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>dvm</h1>
+        <p>Effortless Docker-in-a-box for unsupported Docker platforms</p>
+
+        <p class="view"><a href="https://github.com/fnichol/dvm">View the Project on GitHub <small>fnichol/dvm</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/fnichol/dvm/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/fnichol/dvm/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/fnichol/dvm">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>An on demand <a href="http://www.docker.io/">Docker</a> virtual machine, thanks to <a href="http://www.vagrantup.com/">Vagrant</a> and <a href="https://github.com/steeve/boot2docker">boot2docker</a>. Works great on Macs and other platforms that don't natively support the Docker daemon. Under the covers this is downloading and booting Mitchell Hashimoto's <a href="https://github.com/mitchellh/boot2docker-vagrant-box">boot2docker Vagrant Box</a> image.</p>
+
+<h2>
+<a name="-install" class="anchor" href="#-install"><span class="octicon octicon-link"></span></a><a name="install"></a> Install</h2>
+
+<div class="highlight highlight-sh"><pre>wget -O dvm-0.1.0.tar.gz https://github.com/fnichol/dvm/archive/v0.1.0.tar.gz
+tar -xzvf dvm-0.1.0.tar.gz
+<span class="nb">cd </span>dvm-0.1.0/
+sudo make install
+</pre></div>
+
+<h3>
+<a name="-homebrew-mac" class="anchor" href="#-homebrew-mac"><span class="octicon octicon-link"></span></a><a name="intsall-homebrew"></a> Homebrew (Mac)</h3>
+
+<div class="highlight highlight-sh"><pre>brew install https://raw.github.com/sevki/homebrew-binary/master/docker.rb
+brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
+</pre></div>
+
+<h2>
+<a name="-configuration" class="anchor" href="#-configuration"><span class="octicon octicon-link"></span></a><a name="configuration"></a> Configuration</h2>
+
+<p>If you wish to change the Docker TCP port or memory settings of the virtual machine, edit <code>$HOME/.dvm/dvm.conf</code> for the configuration to be used. By default the following configuration is used:</p>
+
+<ul>
+<li>
+<code>DOCKER_PORT</code>: <code>5252</code>
+</li>
+<li>
+<code>DOCKER_MEMORY</code>: <code>512</code> (in MB)</li>
+<li>
+<code>DOCKER_ARGS</code>: <code>-H unix:///var/run/docker.sock -H tcp://0.0.0.0:$DOCKER_PORT</code>
+</li>
+</ul><h2>
+<a name="-development" class="anchor" href="#-development"><span class="octicon octicon-link"></span></a><a name="development"></a> Development</h2>
+
+<ul>
+<li>Source hosted at <a href="https://github.com/fnichol/dvm">GitHub</a>
+</li>
+<li>Report issues/questions/feature requests on <a href="https://github.com/fnichol/dvm/issues">GitHub Issues</a>
+</li>
+</ul><p>Pull requests are very welcome! Make sure your patches are well tested.
+Ideally create a topic branch for every separate change you make. For
+example:</p>
+
+<ol>
+<li>Fork the repo</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol><h2>
+<a name="-authors" class="anchor" href="#-authors"><span class="octicon octicon-link"></span></a><a name="authors"></a> Authors</h2>
+
+<p>Created and maintained by <a href="https://github.com/fnichol">Fletcher Nichol</a> (<a href="mailto:fnichol@nichol.ca">fnichol@nichol.ca</a>)</p>
+
+<h2>
+<a name="-license" class="anchor" href="#-license"><span class="octicon octicon-link"></span></a><a name="license"></a> License</h2>
+
+<p>Apache 2.0 (see <a href="https://github.com/fnichol/dvm/blob/master/LICENSE.txt">LICENSE.txt</a>)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/fnichol">fnichol</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-29670723-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
