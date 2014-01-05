@@ -91,12 +91,17 @@ check() {
   if command -v docker >/dev/null ; then
     banner "Docker install detected"
   else
-    fail "Command 'docker' was not found in PATH. Please install and retry."
+    fail "'docker' was not found in PATH, please install Docker."
+  fi
+  if command -v VBoxManage >/dev/null ; then
+    banner "VirtualBox install detected"
+  else
+    fail "'VBoxManage' was not found in PATH, please install VirtualBox."
   fi
   if command -v vagrant >/dev/null ; then
     banner "Vagrant install detected"
   else
-    fail "Command 'vagrant' was not found in PATH. Please install and retry."
+    fail "'vagrant' was not found in PATH, please install Vagrant."
   fi
   banner 'Ready to go!'
 }
