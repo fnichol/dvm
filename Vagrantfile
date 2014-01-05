@@ -1,5 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+#
+#  dvm - Effortless Docker-in-a-box for unsupported Docker platforms
+#  For more details, please visit http://fnichol.github.io/dvm
+#
 
 port    = ENV.fetch("DOCKER_PORT", "5252")
 memory  = ENV.fetch("DOCKER_MEMORY", "512")
