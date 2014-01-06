@@ -1,3 +1,11 @@
+## 0.2.1 / 2014-01-06
+
+### Improvements
+
+* Update to boot2docker-vagrant-box 0.3.0-1 which sets `shell = "sh -l"`. (@fnichol)
+* Add `dvm help` subcommand, in addition to `--help` and `-h` flags. (@fnichol)
+
+
 ## 0.2.0 / 2014-01-05
 
 ### Changes
