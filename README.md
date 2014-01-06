@@ -5,9 +5,9 @@ An on demand [Docker][docker] virtual machine, thanks to [Vagrant][vagrant] and 
 ## <a name="install"></a> Install
 
 ```sh
-wget -O dvm-0.1.0.tar.gz https://github.com/fnichol/dvm/archive/v0.1.0.tar.gz
-tar -xzvf dvm-0.1.0.tar.gz
-cd dvm-0.1.0/
+wget -O dvm-0.2.0.tar.gz https://github.com/fnichol/dvm/archive/v0.2.0.tar.gz
+tar -xzvf dvm-0.2.0.tar.gz
+cd dvm-0.2.0/
 sudo make install
 ```
 
