@@ -26,15 +26,17 @@ docker run ubuntu cat /etc/lsb-release
 
 **Note**: The Homebrew/Docker install URL is temporary, pending the merging of https://github.com/Homebrew/homebrew-binary/pull/45 into [homebrew-binary](https://github.com/Homebrew/homebrew-binary).
 
-p.s. No Vagrant or VirtualBox installed? Check out the [Requirements][#requirements] section below.
+p.s. No Vagrant or VirtualBox installed? Check out the [Requirements](#requirements) section below.
 
 ## <a name="requirements"></a> Requirements
 
-* [VirtualBox][virtualbox_dl], version 4.3.4 or greater
-* [Vagrant][vagrant_dl], version 1.4.0 or greater
-* [Docker][docker_dl], version 0.7.3 or greater
+* [VirtualBox][virtualbox_dl], version 4.3.4+
+* [Vagrant][vagrant_dl], version 1.4.0+
+* (*Optional*) [Docker][docker_dl], version 0.7.3+ or use the [Docker Remote API][docker_api]
 
 ## <a name="install"></a> Install
+
+Installation is supported for any Unixlike platform that Vagrant and VirtualBox support.
 
 ```sh
 wget -O dvm-0.2.0.tar.gz https://github.com/fnichol/dvm/archive/v0.2.0.tar.gz
@@ -209,6 +211,7 @@ Apache 2.0 (see [LICENSE.txt][license])
 [issues]:       https://github.com/fnichol/dvm/issues
 
 [docker]:         http://www.docker.io/
+[docker_api]:     http://docs.docker.io/en/latest/api/docker_remote_api/
 [docker_dl]:      http://docs.docker.io/en/latest/installation/
 [vagrant]:        http://www.vagrantup.com/
 [vagrant_dl]:     http://www.vagrantup.com/downloads.html
