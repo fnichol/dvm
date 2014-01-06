@@ -116,6 +116,7 @@ project_path=$(project_path)
 
 case "$1" in
   --version|-v)         echo "$(basename $0): $DVM_VERSION";;
+  --help|-h|help)       usage;;
   check|c*)             check;;
   destroy|d*)           shift; exec_vagrant destroy $*;;
   env|e*)               setup_env;;
