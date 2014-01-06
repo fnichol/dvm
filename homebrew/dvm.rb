@@ -2,8 +2,8 @@ require 'formula'
 
 class Dvm < Formula
   homepage 'http://fnichol.github.io/dvm'
-  url 'https://github.com/fnichol/dvm/archive/v0.2.0.tar.gz'
-  sha1 '509203b626f4b999418c15391f38c658a16d982c'
+  url 'https://github.com/fnichol/dvm/archive/v0.2.1.tar.gz'
+  sha1 '4f74fdd97082ff2792f8612ea48cfa4ec6cd3214'
 
   head 'https://github.com/fnichol/dvm.git'
 
