@@ -120,12 +120,12 @@ case "$1" in
   destroy|d*)           shift; exec_vagrant destroy $*;;
   env|e*)               setup_env;;
   halt|h*|stop|sto*)    shift; exec_vagrant halt $*;;
-  reload|rel*)          shift; exec_vagrant reload $*;;
+  reload|rel*)          shift; exec_vagrant reload --provision $*;;
   resume|res*)          shift; exec_vagrant resume $*;;
   ssh|ss*)              shift; exec_vagrant ssh $*;;
   status|stat*)         shift; exec_vagrant status $*;;
   suspend|su*|pause|p)  shift; exec_vagrant suspend $*;;
-  up|u*|start|star*)    shift; exec_vagrant up $*;;
+  up|u*|start|star*)    shift; exec_vagrant up --provision $*;;
   vagrant|v*)           shift; exec_vagrant $*;;
   *)                    usage; exit 1;;
 esac
