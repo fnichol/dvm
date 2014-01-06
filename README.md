@@ -2,6 +2,35 @@
 
 An on demand [Docker][docker] virtual machine, thanks to [Vagrant][vagrant] and [boot2docker][boot2docker]. Works great on Macs and other platforms that don't natively support the Docker daemon. Under the covers this is downloading and booting Mitchell Hashimoto's [boot2docker Vagrant Box][boot2docker_vagrant_box] image.
 
+## <a name="mac-tl-dr"></a> tl;dr for Mac Users
+
+Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!
+
+```sh
+# install docker mac binary from temporary url
+brew install https://raw.github.com/sevki/homebrew-binary/master/docker.rb
+
+# install dvm
+brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
+
+# bring up your vagrant/docker vm
+dvm up
+
+# set a DOCKER_HOST environment variable that points to your vm
+eval $(dvm env)
+
+# run plain 'ol docker right from your mac
+docker run ubuntu /bin/echo hello world
+```
+
+p.s. No Vagrant or VirtualBox installed? Check out the [Requirements][#requirements] section below.
+
+## <a name="requirements"></a> Requirements
+
+* [VirtualBox][virtualbox_dl]
+* [Vagrant][vagrant_dl]
+* [Docker][docker_dl]
+
 ## <a name="install"></a> Install
 
 ```sh
@@ -55,7 +84,10 @@ Apache 2.0 (see [LICENSE.txt][license])
 [repo]:         https://github.com/fnichol/dvm
 [issues]:       https://github.com/fnichol/dvm/issues
 
-[docker]:       http://www.docker.io/
-[vagrant]:      http://www.vagrantup.com/
-[boot2docker]:  https://github.com/steeve/boot2docker
+[docker]:         http://www.docker.io/
+[docker_dl]:      http://docs.docker.io/en/latest/installation/
+[vagrant]:        http://www.vagrantup.com/
+[vagrant_dl]:     http://www.vagrantup.com/downloads.html
+[virtualbox_dl]:  https://www.virtualbox.org/wiki/Downloads
+[boot2docker]:    https://github.com/steeve/boot2docker
 [boot2docker_vagrant_box]: https://github.com/mitchellh/boot2docker-vagrant-box
