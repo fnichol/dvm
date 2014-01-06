@@ -7,7 +7,8 @@ DIRS=etc lib bin sbin share
 INSTALL_DIRS=`find $(DIRS) -type d 2>/dev/null`
 INSTALL_FILES=`find $(DIRS) -type f 2>/dev/null`
 DOC_FILES=*.md *.txt
-DATA_FILES=Vagrantfile dvm.conf README.*
+DATA_FILES=Vagrantfile README.*
+CONF_FILES=dvm.conf
 
 PKG_DIR=pkg
 PKG_NAME=$(NAME)-$(VERSION)
@@ -54,7 +55,8 @@ install:
 	mkdir -p $(DOC_DIR)
 	cp -r $(DOC_FILES) $(DOC_DIR)/
 	mkdir -p $(DATA_DIR)
-	for file in $(DATA_FILES); do if [ ! -f $(DATA_DIR)/$$file ]; then cp $$file $(DATA_DIR)/$$file; fi; done
+	for file in $(DATA_FILES); do cp $$file $(DATA_DIR)/$$file; done
+	for file in $(CONF_FILES); do if [ ! -f $(DATA_DIR)/$$file ]; then cp $$file $(DATA_DIR)/$$file; fi; done
 
 uninstall:
 	for file in $(INSTALL_FILES); do rm -f $(PREFIX)/$$file; done
