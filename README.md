@@ -9,19 +9,19 @@ Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!
 
 ```sh
 # Install Docker Mac binary (see note below)
-$ brew install https://raw.github.com/sevki/homebrew-binary/master/docker.rb
+brew install https://raw.github.com/sevki/homebrew-binary/master/docker.rb
 
 # Install dvm
-$ brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
+brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
 
 # Bring up your Vagrant/Docker VM
-$ dvm up
+dvm up
 
 # Set a DOCKER_HOST environment variable that points to your VM
-$ eval $(dvm env)
+eval $(dvm env)
 
 # Run plain 'ol Docker commands right from your Mac
-$ docker run ubuntu /bin/echo hello world
+docker run ubuntu /bin/echo hello world
 ```
 
 **Note**: The Homebrew/Docker install URL is temporary, pending the merging of https://github.com/Homebrew/homebrew-binary/pull/45 into [homebrew-binary](https://github.com/Homebrew/homebrew-binary).
