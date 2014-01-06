@@ -201,6 +201,12 @@ example:
 
 Created and maintained by [Fletcher Nichol][fnichol] (<fnichol@nichol.ca>)
 
+## <a name="credits"></a> Credits
+
+* [Steeve Morin (steeve)](https://github.com/steeve) for [boot2docker][boot2docker]
+* [Mitchell Hashimoto (mitchellh)](https://github.com/mitchellh) for [Vagrant][vagrant] and [boot2docker Vagrant Box][boot2docker_vagrant_box]
+* [Postmodern (postmodern)](https://github.com/postmodern) for awesome examples of killer project skeletons in [chruby](https://github.com/postmodern/chruby) and [ruby-install](https://github.com/postmodern/ruby-install)
+
 ## <a name="license"></a> License
 
 Apache 2.0 (see [LICENSE.txt][license])
