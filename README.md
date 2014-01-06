@@ -6,22 +6,25 @@ An on demand [Docker][docker] virtual machine, thanks to [Vagrant][vagrant] and 
 
 Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!
 
+
 ```sh
-# install docker mac binary from temporary url
-brew install https://raw.github.com/sevki/homebrew-binary/master/docker.rb
+# Install Docker Mac binary (see note below)
+$ brew install https://raw.github.com/sevki/homebrew-binary/master/docker.rb
 
-# install dvm
-brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
+# Install dvm
+$ brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
 
-# bring up your vagrant/docker vm
-dvm up
+# Bring up your Vagrant/Docker VM
+$ dvm up
 
-# set a DOCKER_HOST environment variable that points to your vm
-eval $(dvm env)
+# Set a DOCKER_HOST environment variable that points to your VM
+$ eval $(dvm env)
 
-# run plain 'ol docker right from your mac
-docker run ubuntu /bin/echo hello world
+# Run plain 'ol Docker commands right from your Mac
+$ docker run ubuntu /bin/echo hello world
 ```
+
+**Note**: The Homebrew/Docker install URL is temporary, pending the merging of https://github.com/Homebrew/homebrew-binary/pull/45 into [homebrew-binary](https://github.com/Homebrew/homebrew-binary).
 
 p.s. No Vagrant or VirtualBox installed? Check out the [Requirements][#requirements] section below.
 
@@ -43,7 +46,6 @@ sudo make install
 ### <a name="intsall-homebrew"></a> Homebrew (Mac)
 
 ```sh
-brew install https://raw.github.com/sevki/homebrew-binary/master/docker.rb
 brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
 ```
 
