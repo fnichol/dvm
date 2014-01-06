@@ -22,7 +22,8 @@ brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
 
 If you wish to change the Docker TCP port or memory settings of the virtual machine, edit `$HOME/.dvm/dvm.conf` for the configuration to be used. By default the following configuration is used:
 
-* `DOCKER_PORT`: `5252`
+* `DOCKER_IP`: `192.168.42.43`
+* `DOCKER_PORT`: `4243`
 * `DOCKER_MEMORY`: `512` (in MB)
 * `DOCKER_ARGS`: `-H unix:///var/run/docker.sock -H tcp://0.0.0.0:$DOCKER_PORT`
 

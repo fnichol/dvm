@@ -108,7 +108,7 @@ check() {
 
 setup_env() {
   load_conf
-  echo "export DOCKER_HOST=tcp://127.0.0.1:${DOCKER_PORT:-5252}"
+  echo "export DOCKER_HOST=tcp://${DOCKER_IP:-192.168.42.43}:${DOCKER_PORT:-4243}"
 }
 
 project_path=$(project_path)
