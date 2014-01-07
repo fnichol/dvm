@@ -9,7 +9,7 @@ Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!
 
 ```sh
 # Install Docker Mac binary (see note below)
-brew install https://raw.github.com/sevki/homebrew-binary/master/docker.rb
+brew install https://raw.github.com/steeve/homebrew-binary/docker/docker.rb
 
 # Install dvm
 brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
@@ -24,7 +24,7 @@ eval $(dvm env)
 docker run ubuntu cat /etc/lsb-release
 ```
 
-**Note**: The Homebrew/Docker install URL is temporary, pending the merging of https://github.com/Homebrew/homebrew-binary/pull/45 into [homebrew-binary](https://github.com/Homebrew/homebrew-binary).
+**Note**: The Homebrew/Docker install URL is temporary, pending the merging of https://github.com/Homebrew/homebrew-binary/pull/48 into [homebrew-binary](https://github.com/Homebrew/homebrew-binary).
 
 p.s. No Vagrant or VirtualBox installed? Check out the [Requirements](#requirements) section below.
 
