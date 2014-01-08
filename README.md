@@ -38,9 +38,9 @@ p.s. No Vagrant or VirtualBox installed? Check out the [Requirements](#requireme
 Installation is supported for any Unixlike platform that Vagrant and VirtualBox support.
 
 ```sh
-wget -O dvm-0.2.1.tar.gz https://github.com/fnichol/dvm/archive/v0.2.1.tar.gz
-tar -xzvf dvm-0.2.1.tar.gz
-cd dvm-0.2.1/
+wget -O dvm-0.2.2.tar.gz https://github.com/fnichol/dvm/archive/v0.2.2.tar.gz
+tar -xzvf dvm-0.2.2.tar.gz
+cd dvm-0.2.2/
 sudo make install
 ```
 
