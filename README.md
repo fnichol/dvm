@@ -9,6 +9,7 @@ Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!
 
 ```sh
 # Install Docker Mac binary
+brew tap homebrew/binary
 brew install docker
 
 # Install dvm
