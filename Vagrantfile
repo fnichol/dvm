@@ -72,6 +72,9 @@ Vagrant.configure("2") do |config|
       sudo sed -i -e 's|docker -d|docker -d #{args}|' $INITD
       sudo $INITD restart
     fi
+    if ! grep -q '8\.8\.8\.8' /etc/resolv.conf >/dev/null; then
+      echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+    fi
   PREPARE
   config.vm.define :dvm
 end
