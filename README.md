@@ -47,10 +47,11 @@ sudo make install
 
 ### <a name="intsall-homebrew"></a> Homebrew (Mac)
 
-There is a vendored Homebrew formula which can be installed with:
+There is a [Homebrew tap][homebrew_dvm] with a formula which can be installed with:
 
 ```sh
-brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
+brew tap fnichol/dvm
+brew install dvm
 ```
 
 ## <a name="usage"></a> Usage
@@ -219,6 +220,7 @@ Apache 2.0 (see [LICENSE.txt][license])
 [docker]:         http://www.docker.io/
 [docker_api]:     http://docs.docker.io/en/latest/api/docker_remote_api/
 [docker_dl]:      http://docs.docker.io/en/latest/installation/
+[homebrew_dvm]:   https://github.com/fnichol/homebrew-dvm
 [vagrant]:        http://www.vagrantup.com/
 [vagrant_dl]:     http://www.vagrantup.com/downloads.html
 [virtualbox_dl]:  https://www.virtualbox.org/wiki/Downloads
