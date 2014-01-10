@@ -13,7 +13,8 @@ brew tap homebrew/binary
 brew install docker
 
 # Install dvm
-brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
+brew tap fnichol/dvm
+brew install dvm
 
 # Bring up your Vagrant/Docker VM
 dvm up
