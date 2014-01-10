@@ -40,7 +40,8 @@ brew tap homebrew/binary
 brew install docker
 
 <span class="c"># Install dvm</span>
-brew install https://raw.github.com/fnichol/dvm/master/homebrew/dvm.rb
+brew tap fnichol/dvm
+brew install dvm
 
 <span class="c"># Bring up your Vagrant/Docker VM</span>
 dvm up
@@ -69,9 +70,9 @@ docker run ubuntu cat /etc/lsb-release
 
 <p>Installation is supported for any Unixlike platform that Vagrant and VirtualBox support.</p>
 
-<div class="highlight highlight-sh"><pre>wget -O dvm-0.2.1.tar.gz https://github.com/fnichol/dvm/archive/v0.2.1.tar.gz
-tar -xzvf dvm-0.2.1.tar.gz
-<span class="nb">cd </span>dvm-0.2.1/
+<div class="highlight highlight-sh"><pre>wget -O dvm-0.2.2.tar.gz https://github.com/fnichol/dvm/archive/v0.2.2.tar.gz
+tar -xzvf dvm-0.2.2.tar.gz
+<span class="nb">cd </span>dvm-0.2.2/
 sudo make install
 </pre></div>
 
