@@ -108,8 +108,12 @@ check() {
 }
 
 setup_env() {
-  load_conf
-  echo "export DOCKER_HOST=tcp://${DOCKER_IP:-192.168.42.43}:${DOCKER_PORT:-4243}"
+	load_conf
+	if [[ $SHELL =~ .*fish$ ]] ; then
+ 		echo "set -x DOCKER_HOST tcp://${DOCKER_IP:-192.168.42.43}:${DOCKER_PORT:-4243}"
+	else
+		echo "export DOCKER_HOST=tcp://${DOCKER_IP:-192.168.42.43}:${DOCKER_PORT:-4243}"
+	fi
 }
 
 project_path=$(project_path)
