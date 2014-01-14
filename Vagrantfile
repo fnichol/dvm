@@ -64,7 +64,11 @@ Vagrant.configure("2") do |config|
   config.vm.box = "boot2docker-0.3.0-1"
   config.vm.box_url = "https://github.com/mitchellh/boot2docker-vagrant-box/releases/download/v0.3.0-1/boot2docker.box"
   config.vm.network "private_network", :ip => ip
-  config.vm.provider :virtualbox do |v| v.memory = Integer(memory) end
+  config.vm.provider :virtualbox do |v|
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--memory", Integer(memory)]
+  end
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
     if ! grep -q 'tcp://' $INITD >/dev/null; then
