@@ -45,7 +45,7 @@ cd dvm-0.3.0/
 sudo make install
 ```
 
-### <a name="intsall-homebrew"></a> Homebrew (Mac)
+### <a name="install-homebrew"></a> Installing with Homebrew (Mac)
 
 There is a [Homebrew tap][homebrew_dvm] with a formula which can be installed with:
 
@@ -53,6 +53,23 @@ There is a [Homebrew tap][homebrew_dvm] with a formula which can be installed wi
 brew tap fnichol/dvm
 brew install dvm
 ```
+
+## <a name="upgrade"></a> Upgrade
+
+You can follow the instructions for [installing](#install) dvm.
+
+Please not however that if the underlying boot2docker basebox is upgraded between versions, you will effectively get a new virtual machine when dvm restarts. A good idea before upgrading is to destroy your current dvm instance with `dvm destroy`.
+
+### <a name="upgrade-homebrew"></a> Upgrading with Homebrew (Mac)
+
+If using the dvm Homebrew tap, simply:
+
+```sh
+brew update
+brew upgrade dvm
+```
+
+Also please read the above note about destroying in between upgrades.
 
 ## <a name="usage"></a> Usage
 
