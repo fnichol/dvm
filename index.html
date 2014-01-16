@@ -70,20 +70,38 @@ docker run ubuntu cat /etc/lsb-release
 
 <p>Installation is supported for any Unixlike platform that Vagrant and VirtualBox support.</p>
 
-<div class="highlight highlight-sh"><pre>wget -O dvm-0.2.2.tar.gz https://github.com/fnichol/dvm/archive/v0.2.2.tar.gz
-tar -xzvf dvm-0.2.2.tar.gz
-<span class="nb">cd </span>dvm-0.2.2/
+<div class="highlight highlight-sh"><pre>wget -O dvm-0.3.0.tar.gz https://github.com/fnichol/dvm/archive/v0.3.0.tar.gz
+tar -xzvf dvm-0.3.0.tar.gz
+<span class="nb">cd </span>dvm-0.3.0/
 sudo make install
 </pre></div>
 
 <h3>
-<a name="-homebrew-mac" class="anchor" href="#-homebrew-mac"><span class="octicon octicon-link"></span></a><a name="intsall-homebrew"></a> Homebrew (Mac)</h3>
+<a name="-installing-with-homebrew-mac" class="anchor" href="#-installing-with-homebrew-mac"><span class="octicon octicon-link"></span></a><a name="install-homebrew"></a> Installing with Homebrew (Mac)</h3>
 
 <p>There is a <a href="https://github.com/fnichol/homebrew-dvm">Homebrew tap</a> with a formula which can be installed with:</p>
 
 <div class="highlight highlight-sh"><pre>brew tap fnichol/dvm
 brew install dvm
 </pre></div>
+
+<h2>
+<a name="-upgrade" class="anchor" href="#-upgrade"><span class="octicon octicon-link"></span></a><a name="upgrade"></a> Upgrade</h2>
+
+<p>You can follow the instructions for <a href="#install">installing</a> dvm.</p>
+
+<p>Please not however that if the underlying boot2docker basebox is upgraded between versions, you will effectively get a new virtual machine when dvm restarts. A good idea before upgrading is to destroy your current dvm instance with <code>dvm destroy</code>.</p>
+
+<h3>
+<a name="-upgrading-with-homebrew-mac" class="anchor" href="#-upgrading-with-homebrew-mac"><span class="octicon octicon-link"></span></a><a name="upgrade-homebrew"></a> Upgrading with Homebrew (Mac)</h3>
+
+<p>If using the dvm Homebrew tap, simply:</p>
+
+<div class="highlight highlight-sh"><pre>brew update
+brew upgrade dvm
+</pre></div>
+
+<p>Also please read the above note about destroying in between upgrades.</p>
 
 <h2>
 <a name="-usage" class="anchor" href="#-usage"><span class="octicon octicon-link"></span></a><a name="usage"></a> Usage</h2>
@@ -213,9 +231,11 @@ docker@boot2docker:~$
 <li>
 <code>DOCKER_MEMORY</code>: <code>512</code> (in MB)</li>
 <li>
-<code>DOCKER_ARGS</code>: <code>-H unix:///var/run/docker.sock -H tcp://0.0.0.0:$DOCKER_PORT</code>
+<code>DOCKER_ARGS</code>: <code>-H unix:// -H tcp://</code>
 </li>
-</ul><h2>
+</ul><p>See <a href="https://github.com/fnichol/dvm/blob/master/dvm.conf">dvm.conf</a> for more details.</p>
+
+<h2>
 <a name="-development" class="anchor" href="#-development"><span class="octicon octicon-link"></span></a><a name="development"></a> Development</h2>
 
 <ul>
