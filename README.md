@@ -181,7 +181,9 @@ If you wish to change the Docker TCP port or memory settings of the virtual mach
 * `DOCKER_IP`: `192.168.42.43`
 * `DOCKER_PORT`: `4243`
 * `DOCKER_MEMORY`: `512` (in MB)
-* `DOCKER_ARGS`: `-H unix:///var/run/docker.sock -H tcp://0.0.0.0:$DOCKER_PORT`
+* `DOCKER_ARGS`: `-H unix:// -H tcp://`
+
+See [dvm.conf][dvm_conf] for more details.
 
 ## <a name="development"></a> Development
 
@@ -220,6 +222,7 @@ Apache 2.0 (see [LICENSE.txt][license])
 [docker]:         http://www.docker.io/
 [docker_api]:     http://docs.docker.io/en/latest/api/docker_remote_api/
 [docker_dl]:      http://docs.docker.io/en/latest/installation/
+[dvm_conf]:       https://github.com/fnichol/dvm/blob/master/dvm.conf
 [homebrew_dvm]:   https://github.com/fnichol/homebrew-dvm
 [vagrant]:        http://www.vagrantup.com/
 [vagrant_dl]:     http://www.vagrantup.com/downloads.html

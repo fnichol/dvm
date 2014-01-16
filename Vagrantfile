@@ -8,7 +8,11 @@
 ip      = ENV.fetch("DOCKER_IP", "192.168.42.43")
 port    = ENV.fetch("DOCKER_PORT", "4243")
 memory  = ENV.fetch("DOCKER_MEMORY", "512")
-args    = ENV.fetch("DOCKER_ARGS", "-H unix:///var/run/docker.sock -H tcp://0.0.0.0:#{port}")
+args    = ENV.fetch("DOCKER_ARGS", "")
+
+if args.empty? && port != "4243"
+  args = "-H unix:// -H tcp://0.0.0.0:#{port}"
+end
 
 module VagrantPlugins
   module GuestTcl
@@ -71,9 +75,9 @@ Vagrant.configure("2") do |config|
   end
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
-    if ! grep -q 'tcp://' $INITD >/dev/null; then
-      echo "---> Configuring docker to bind to tcp/#{port} and restarting"
-      sudo sed -i -e 's|docker -d|docker -d #{args}|' $INITD
+    if [ -n '#{args}' ] && grep -q 'docker -d .* $EXPOSE_ALL' $INITD >/dev/null; then
+      echo "---> Configuring docker with args '#{args}' and restarting"
+      sudo sed -i -e 's|docker -d .* $EXPOSE_ALL|docker -d #{args}|' $INITD
       sudo $INITD restart
     fi
     if ! grep -q '8\.8\.8\.8' /etc/resolv.conf >/dev/null; then
