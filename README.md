@@ -58,7 +58,7 @@ brew install dvm
 
 You can follow the instructions for [installing](#install) dvm.
 
-Please not however that if the underlying boot2docker basebox is upgraded between versions, you will effectively get a new virtual machine when dvm restarts. A good idea before upgrading is to destroy your current dvm instance with `dvm destroy`.
+Please note however that if the underlying boot2docker basebox is upgraded between versions, you will effectively get a new virtual machine when dvm restarts. A good idea before upgrading is to destroy your current dvm instance with `dvm destroy`.
 
 ### <a name="upgrade-homebrew"></a> Upgrading with Homebrew (Mac)
 
