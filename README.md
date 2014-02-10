@@ -34,6 +34,13 @@ p.s. No Vagrant or VirtualBox installed? Check out the [Requirements](#requireme
 * [Vagrant][vagrant_dl], version 1.4.0+
 * (*Optional*) [Docker][docker_dl], version 0.7.3+ or use the [Docker Remote API][docker_api]
 
+Use [Homebrew Cask](https://github.com/phinze/homebrew-cask)? Too easy!
+
+```sh
+brew cask install vagrant    --appdir=/Applications
+brew cask install virtualbox --appdir=/Applications
+```
+
 ## <a name="install"></a> Install
 
 Installation is supported for any Unixlike platform that Vagrant and VirtualBox support.
