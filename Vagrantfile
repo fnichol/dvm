@@ -15,7 +15,7 @@ if args.empty? && port != "4243"
 end
 
 module VagrantPlugins
-  module GuestTcl
+  module GuestDvmTcl
     module Cap ; end
 
     class Plugin < Vagrant.plugin("2")
@@ -23,7 +23,7 @@ module VagrantPlugins
       description "Core Linux guest support"
 
       guest("tcl", "linux") do
-        class ::VagrantPlugins::GuestTcl::Guest < Vagrant.plugin("2", :guest)
+        class ::VagrantPlugins::GuestDvmTcl::Guest < Vagrant.plugin("2", :guest)
           def detect?(machine)
             machine.communicate.test("cat /etc/issue | grep 'Core Linux'")
           end
@@ -32,7 +32,7 @@ module VagrantPlugins
       end
 
       guest_capability("tcl", "halt") do
-        class ::VagrantPlugins::GuestTcl::Cap::Halt
+        class ::VagrantPlugins::GuestDvmTcl::Cap::Halt
           def self.halt(machine)
             machine.communicate.sudo("poweroff")
           rescue IOError
@@ -44,7 +44,7 @@ module VagrantPlugins
       end
 
       guest_capability("tcl", "configure_networks") do
-        class ::VagrantPlugins::GuestTcl::Cap::ConfigureNetworks
+        class ::VagrantPlugins::GuestDvmTcl::Cap::ConfigureNetworks
           def self.configure_networks(machine, networks)
             require 'ipaddr'
             machine.communicate.tap do |comm|
