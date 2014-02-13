@@ -45,9 +45,9 @@ brew cask install virtualbox --appdir=/Applications
 Installation is supported for any Unixlike platform that Vagrant and VirtualBox/VMware support.
 
 ```sh
-wget -O dvm-0.3.0.tar.gz https://github.com/fnichol/dvm/archive/v0.3.0.tar.gz
-tar -xzvf dvm-0.3.0.tar.gz
-cd dvm-0.3.0/
+wget -O dvm-0.4.0.tar.gz https://github.com/fnichol/dvm/archive/v0.4.0.tar.gz
+tar -xzvf dvm-0.4.0.tar.gz
+cd dvm-0.4.0/
 sudo make install
 ```
 
