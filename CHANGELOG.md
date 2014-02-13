@@ -1,3 +1,10 @@
+## 0.4.1 / 2014-02-13
+
+### Bug fixes
+
+* Up version tag in code for `dvm version`. (@fnichol)
+
+
 ## 0.4.0 / 2014-02-13
 
 ### New features
