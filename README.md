@@ -30,11 +30,11 @@ p.s. No Vagrant or VirtualBox installed? Check out the [Requirements](#requireme
 
 ## <a name="requirements"></a> Requirements
 
-* [VirtualBox][virtualbox_dl], version 4.3.4+
+* [VirtualBox][virtualbox_dl], version 4.3.4+ or [VMware Fusion](vmware_fusion_dl)/[VMware Workstation][vmware_workstation_dl]
 * [Vagrant][vagrant_dl], version 1.4.0+
 * (*Optional*) [Docker][docker_dl], version 0.7.3+ or use the [Docker Remote API][docker_api]
 
-Use [Homebrew Cask](https://github.com/phinze/homebrew-cask)? Too easy!
+Use [Homebrew Cask](https://github.com/phinze/homebrew-cask)? For Vagrant and VirtualBox, too easy!
 
 ```sh
 brew cask install vagrant    --appdir=/Applications
@@ -43,7 +43,7 @@ brew cask install virtualbox --appdir=/Applications
 
 ## <a name="install"></a> Install
 
-Installation is supported for any Unixlike platform that Vagrant and VirtualBox support.
+Installation is supported for any Unixlike platform that Vagrant and VirtualBox/VMware support.
 
 ```sh
 wget -O dvm-0.3.0.tar.gz https://github.com/fnichol/dvm/archive/v0.3.0.tar.gz
@@ -124,6 +124,12 @@ Bringing machine 'dvm' up with 'virtualbox' provider...
 [dvm] Running provisioner: shell...
 [dvm] Running: inline script
 ---> Configuring docker to bind to tcp/4243 and restarting
+```
+
+Or maybe you want to use the `vmware_fusion` Vagrant provider which isn't your default?
+
+```
+$ dvm up --provider=vmware_fusion
 ```
 
 Need to free up some memory? Pause your VM with `dvm suspend`:
@@ -250,6 +256,8 @@ Apache 2.0 (see [LICENSE.txt][license])
 [homebrew_dvm]:   https://github.com/fnichol/homebrew-dvm
 [vagrant]:        http://www.vagrantup.com/
 [vagrant_dl]:     http://www.vagrantup.com/downloads.html
+[vmware_fusion_dl]: http://www.vmware.com/go/downloadfusion
+[vmware_workstation_dl]: http://www.vmware.com/go/downloadworkstation
 [virtualbox_dl]:  https://www.virtualbox.org/wiki/Downloads
 [boot2docker]:    https://github.com/steeve/boot2docker
 [boot2docker_vagrant_box]: https://github.com/mitchellh/boot2docker-vagrant-box

@@ -66,13 +66,22 @@ end
 
 Vagrant.configure("2") do |config|
   config.vm.box = "boot2docker-0.5.4-1"
-  config.vm.box_url = "https://github.com/mitchellh/boot2docker-vagrant-box/releases/download/v0.5.4-1/boot2docker_virtualbox.box"
   config.vm.network "private_network", :ip => ip
-  config.vm.provider :virtualbox do |v|
+
+  config.vm.provider :virtualbox do |v, override|
+    override.vm.box_url = "https://github.com/mitchellh/boot2docker-vagrant-box/releases/download/v0.5.4-1/boot2docker_virtualbox.box"
     v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--memory", Integer(memory)]
   end
+
+  ["vmware_fusion", "vmware_workstation"].each do |vmware|
+    config.vm.provider vmware do |v, override|
+      override.vm.box_url = "https://github.com/mitchellh/boot2docker-vagrant-box/releases/download/v0.5.4-1/boot2docker_vmware.box"
+      v.vmx["memsize"] = Integer(memory)
+    end
+  end
+
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
     if [ -n '#{args}' ] && grep -q 'docker -d .* $EXPOSE_ALL' $INITD >/dev/null; then
