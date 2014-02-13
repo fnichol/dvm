@@ -1,33 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>dvm by fnichol</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="dvm : Effortless Docker-in-a-box for unsupported Docker platforms, like the Mac" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>dvm</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>dvm</h1>
-        <p>Effortless Docker-in-a-box for unsupported Docker platforms, like the Mac</p>
 
-        <p class="view"><a href="https://github.com/fnichol/dvm">View the Project on GitHub <small>fnichol/dvm</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fnichol/dvm">View on GitHub</a>
 
+          <h1 id="project_title">dvm</h1>
+          <h2 id="project_tagline">Effortless Docker-in-a-box for unsupported Docker platforms, like the Mac</h2>
 
-        <ul>
-          <li><a href="https://github.com/fnichol/dvm/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/fnichol/dvm/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/fnichol/dvm">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/fnichol/dvm/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/fnichol/dvm/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <p>An on demand <a href="http://www.docker.io/">Docker</a> virtual machine, thanks to <a href="http://www.vagrantup.com/">Vagrant</a> and <a href="https://github.com/steeve/boot2docker">boot2docker</a>. Works great on Macs and other platforms that don't natively support the Docker daemon. Under the covers this is downloading and booting Mitchell Hashimoto's <a href="https://github.com/mitchellh/boot2docker-vagrant-box">boot2docker Vagrant Box</a> image.</p>
 
 <h2>
@@ -36,7 +39,6 @@
 <p>Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!</p>
 
 <div class="highlight highlight-sh"><pre><span class="c"># Install Docker Mac binary</span>
-brew tap homebrew/binary
 brew install docker
 
 <span class="c"># Install dvm</span>
@@ -60,19 +62,26 @@ docker run ubuntu cat /etc/lsb-release
 
 <ul>
 <li>
-<a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>, version 4.3.4+</li>
+<a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>, version 4.3.4+ or <a href="vmware_fusion_dl">VMware Fusion</a>/<a href="http://www.vmware.com/go/downloadworkstation">VMware Workstation</a>
+</li>
 <li>
 <a href="http://www.vagrantup.com/downloads.html">Vagrant</a>, version 1.4.0+</li>
 <li>(<em>Optional</em>) <a href="http://docs.docker.io/en/latest/installation/">Docker</a>, version 0.7.3+ or use the <a href="http://docs.docker.io/en/latest/api/docker_remote_api/">Docker Remote API</a>
 </li>
-</ul><h2>
+</ul><p>Use <a href="https://github.com/phinze/homebrew-cask">Homebrew Cask</a>? For Vagrant and VirtualBox, too easy!</p>
+
+<div class="highlight highlight-sh"><pre>brew cask install vagrant    --appdir<span class="o">=</span>/Applications
+brew cask install virtualbox --appdir<span class="o">=</span>/Applications
+</pre></div>
+
+<h2>
 <a name="-install" class="anchor" href="#-install"><span class="octicon octicon-link"></span></a><a name="install"></a> Install</h2>
 
-<p>Installation is supported for any Unixlike platform that Vagrant and VirtualBox support.</p>
+<p>Installation is supported for any Unixlike platform that Vagrant and VirtualBox/VMware support.</p>
 
-<div class="highlight highlight-sh"><pre>wget -O dvm-0.3.0.tar.gz https://github.com/fnichol/dvm/archive/v0.3.0.tar.gz
-tar -xzvf dvm-0.3.0.tar.gz
-<span class="nb">cd </span>dvm-0.3.0/
+<div class="highlight highlight-sh"><pre>wget -O dvm-0.4.1.tar.gz https://github.com/fnichol/dvm/archive/v0.4.1.tar.gz
+tar -xzvf dvm-0.4.1.tar.gz
+<span class="nb">cd </span>dvm-0.4.1/
 sudo make install
 </pre></div>
 
@@ -90,7 +99,7 @@ brew install dvm
 
 <p>You can follow the instructions for <a href="#install">installing</a> dvm.</p>
 
-<p>Please not however that if the underlying boot2docker basebox is upgraded between versions, you will effectively get a new virtual machine when dvm restarts. A good idea before upgrading is to destroy your current dvm instance with <code>dvm destroy</code>.</p>
+<p>Please note however that if the underlying boot2docker basebox is upgraded between versions, you will effectively get a new virtual machine when dvm restarts. A good idea before upgrading is to destroy your current dvm instance with <code>dvm destroy</code>.</p>
 
 <h3>
 <a name="-upgrading-with-homebrew-mac" class="anchor" href="#-upgrading-with-homebrew-mac"><span class="octicon octicon-link"></span></a><a name="upgrade-homebrew"></a> Upgrading with Homebrew (Mac)</h3>
@@ -147,6 +156,11 @@ Bringing machine 'dvm' up with 'virtualbox' provider...
 [dvm] Running provisioner: shell...
 [dvm] Running: inline script
 ---&gt; Configuring docker to bind to tcp/4243 and restarting
+</code></pre>
+
+<p>Or maybe you want to use the <code>vmware_fusion</code> Vagrant provider which isn't your default?</p>
+
+<pre><code>$ dvm up --provider=vmware_fusion
 </code></pre>
 
 <p>Need to free up some memory? Pause your VM with <code>dvm suspend</code>:</p>
@@ -276,12 +290,16 @@ example:</p>
 
 <p>Apache 2.0 (see <a href="https://github.com/fnichol/dvm/blob/master/LICENSE.txt">LICENSE.txt</a>)</p>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/fnichol">fnichol</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">dvm maintained by <a href="https://github.com/fnichol">fnichol</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -292,6 +310,7 @@ example:</p>
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+
 
   </body>
 </html>
