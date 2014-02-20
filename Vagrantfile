@@ -8,6 +8,7 @@
 ip      = ENV.fetch("DOCKER_IP", "192.168.42.43")
 port    = ENV.fetch("DOCKER_PORT", "4243")
 memory  = ENV.fetch("DOCKER_MEMORY", "512")
+cpus    = ENV.fetch("DOCKER_CPUS", "1")
 args    = ENV.fetch("DOCKER_ARGS", "")
 
 if args.empty? && port != "4243"
@@ -73,12 +74,14 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--memory", Integer(memory)]
+    v.customize ["modifyvm", :id, "--cpus", Integer(cpus)]
   end
 
   ["vmware_fusion", "vmware_workstation"].each do |vmware|
     config.vm.provider vmware do |v, override|
       override.vm.box_url = "https://github.com/mitchellh/boot2docker-vagrant-box/releases/download/v0.5.4-1/boot2docker_vmware.box"
       v.vmx["memsize"] = Integer(memory)
+      v.vmx["numvcpus"] = Integer(cpus)
     end
   end
 
