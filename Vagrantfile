@@ -12,15 +12,18 @@ cpus    = ENV.fetch("DOCKER_CPUS", "1")
 cidr    = ENV.fetch("DOCKER0_CIDR", "")
 args    = ENV.fetch("DOCKER_ARGS", "")
 
-if args.empty? && port != "4243"
-  args = "-H unix:// -H tcp://0.0.0.0:#{port}"
+unless args.empty?
+  args = "EXTRA_ARGS=#{args}"
 end
 
 docker0_bridge_setup = ""
 bridge_utils_url     = "ftp://ftp.nl.netbsd.org/vol/2/metalab/distributions/tinycorelinux/4.x/x86/tcz/bridge-utils.tcz"
 unless cidr.empty?
-  args  = '-H unix:// -H tcp://' if args.empty?
-  args += " --bip=\"#{cidr}\""
+  if args.empty?
+    args = "EXTRA_ARGS='--bip=#{cidr}'"
+  else
+    args += " --bip=#{cidr}"
+  end
 
   as_docker_usr     = 'su - docker -c'
   dl_dir            = '/home/docker'
@@ -116,9 +119,13 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
     #{docker0_bridge_setup}
-    if [ -n '#{args}' ] && grep -q 'docker -d .* $EXPOSE_ALL' $INITD >/dev/null; then
+    if [ '#{port}' -ne '4243' ]; then
+      echo "---> Configuring docker to listen on port '#{port}'"
+      sudo sed -i -e 's|\\(DOCKER_HOST="tcp://0.0.0.0:\\)4243|\1#{port}|' $INITD
+    fi
+    if [ -n '#{args}' ]; then
       echo "---> Configuring docker with args '#{args}' and restarting"
-      sudo sed -i -e 's|docker -d .* \\(-g .*\\)-H.*$EXPOSE_ALL|docker -d \\1 #{args}|' $INITD
+      echo '#{args}' > /var/lib/boot2docker/profile
       sudo $INITD restart
     fi
     if ! grep -q '8\.8\.8\.8' /etc/resolv.conf >/dev/null; then
