@@ -89,7 +89,7 @@ Vagrant.configure("2") do |config|
     INITD=/usr/local/etc/init.d/docker
     if [ -n '#{args}' ] && grep -q 'docker -d .* $EXPOSE_ALL' $INITD >/dev/null; then
       echo "---> Configuring docker with args '#{args}' and restarting"
-      sudo sed -i -e 's|docker -d .* $EXPOSE_ALL|docker -d #{args}|' $INITD
+      sudo sed -i -e 's|docker -d .* \\(-g .*\\)-H.*$EXPOSE_ALL|docker -d \\1 #{args}|' $INITD
       sudo $INITD restart
     fi
     if ! grep -q '8\.8\.8\.8' /etc/resolv.conf >/dev/null; then
