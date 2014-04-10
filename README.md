@@ -210,6 +210,7 @@ If you wish to change the Docker TCP port or memory settings of the virtual mach
 * `DOCKER_IP`: `192.168.42.43`
 * `DOCKER_PORT`: `4243`
 * `DOCKER_MEMORY`: `512` (in MB)
+* `DOCKER_CPUS`: `1`
 * `DOCKER_ARGS`: `-H unix:// -H tcp://`
 
 See [dvm.conf][dvm_conf] for more details.
