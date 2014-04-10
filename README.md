@@ -213,6 +213,8 @@ If you wish to change the Docker TCP port or memory settings of the virtual mach
 * `DOCKER_CPUS`: `1`
 * `DOCKER_ARGS`: `-H unix:// -H tcp://`
 
+If you wish to change the network range Docker uses for the `docker0` bridge, set `DOCKER0_CIDR` to the range required.
+
 See [dvm.conf][dvm_conf] for more details.
 
 ## <a name="development"></a> Development
