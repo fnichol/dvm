@@ -2,6 +2,8 @@
 
 An on demand [Docker][docker] virtual machine, thanks to [Vagrant][vagrant] and [boot2docker][boot2docker]. Works great on Macs and other platforms that don't natively support the Docker daemon. Under the covers this is downloading and booting Mitchell Hashimoto's [boot2docker Vagrant Box][boot2docker_vagrant_box] image.
 
+The driving need for something like dvm was for running infrastructure testing, like [Test Kitchen][kitchenci] using the [kitchen-docker driver][kitchen_docker]. For the driver to work it needs access to all the dynamically assigned ports, not just the Docker daemon port. That's why dvm uses a private network segment and address (`192.168.42.43` by default). Once Docker started supporting the `DOCKER_HOST` environment variable, the actual IP address was less important and consequently made the docker command on non-Linux distros feel almost native.
+
 ## <a name="mac-tl-dr"></a> tl;dr for Mac Users
 
 Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!
@@ -256,6 +258,8 @@ Apache 2.0 (see [LICENSE.txt][license])
 [docker_dl]:      http://docs.docker.io/en/latest/installation/
 [dvm_conf]:       https://github.com/fnichol/dvm/blob/master/dvm.conf
 [homebrew_dvm]:   https://github.com/fnichol/homebrew-dvm
+[kitchenci]:      http://kitchen.ci
+[kitchen_docker]: https://github.com/portertech/kitchen-docker
 [vagrant]:        http://www.vagrantup.com/
 [vagrant_dl]:     http://www.vagrantup.com/downloads.html
 [vmware_fusion_dl]: http://www.vmware.com/go/downloadfusion
