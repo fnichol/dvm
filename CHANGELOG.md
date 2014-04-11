@@ -1,8 +1,27 @@
+## 0.5.0 / 2014-04-14
+
+### Bug fixes
+
+* Pull request [#21][]: Fix inability to stop or delete containers if `DOCKER_ARGS` used. ([@yacn][])
+
+### New features
+
+* Pull request [#29][]: Upgrade to [boot2docker 0.8.0](https://github.com/boot2docker/boot2docker/releases/tag/v0.8.0). ([@jfoy][])
+* Pull request [#20][]: Allow number of CPUs to be customized via `DOCKER_CPUS`. ([@rubbish][])
+* Pull request [#22][]: Allow docker0 CIDR to be specified. ([@yacn][])
+* Pull request [#30][]: Use boot2docker's `$EXTRA_ARGS` config option. ([@yacn][])
+
+### Improvements
+
+* Issue [#10][]: Add project rationale, explaining why it uses private IP address. ([@fnichol][])
+* Issue [#19][]: Update `dvm check` to attempt to check VMware fusion on Mac. ([@fnichol][])
+
+
 ## 0.4.1 / 2014-02-13
 
 ### Bug fixes
 
-* Up version tag in code for `dvm version`. (@fnichol)
+* Up version tag in code for `dvm version`. ([@fnichol][])
 
 
 ## 0.4.0 / 2014-02-13
@@ -74,8 +93,15 @@ The initial release.
 [#3]: https://github.com/fnichol/dvm/issues/3
 [#5]: https://github.com/fnichol/dvm/issues/5
 [#6]: https://github.com/fnichol/dvm/issues/6
+[#10]: https://github.com/fnichol/dvm/issues/10
 [#11]: https://github.com/fnichol/dvm/issues/11
 [#17]: https://github.com/fnichol/dvm/issues/17
+[#19]: https://github.com/fnichol/dvm/issues/19
+[#20]: https://github.com/fnichol/dvm/issues/20
+[#21]: https://github.com/fnichol/dvm/issues/21
+[#22]: https://github.com/fnichol/dvm/issues/22
+[#29]: https://github.com/fnichol/dvm/issues/29
+[#30]: https://github.com/fnichol/dvm/issues/30
 [@agoddard]: https://github.com/agoddard
 [@fnichol]: https://github.com/fnichol
 [@gianpaj]: https://github.com/gianpaj
@@ -83,4 +109,6 @@ The initial release.
 [@hmarr]: https://github.com/hmarr
 [@jfoy]: https://github.com/jfoy
 [@mitchellh]: https://github.com/mitchellh
+[@rubbish]: https://github.com/rubbish
 [@tlockney]: https://github.com/tlockney
+[@yacn]: https://github.com/yacn
