@@ -33,6 +33,8 @@
       <section id="main_content" class="inner">
         <p>An on demand <a href="http://www.docker.io/">Docker</a> virtual machine, thanks to <a href="http://www.vagrantup.com/">Vagrant</a> and <a href="https://github.com/steeve/boot2docker">boot2docker</a>. Works great on Macs and other platforms that don't natively support the Docker daemon. Under the covers this is downloading and booting Mitchell Hashimoto's <a href="https://github.com/mitchellh/boot2docker-vagrant-box">boot2docker Vagrant Box</a> image.</p>
 
+<p>The driving need for something like dvm was for running infrastructure testing, like <a href="http://kitchen.ci">Test Kitchen</a> using the <a href="https://github.com/portertech/kitchen-docker">kitchen-docker driver</a>. For the driver to work it needs access to all the dynamically assigned ports, not just the Docker daemon port. That's why dvm uses a private network segment and address (<code>192.168.42.43</code> by default). Once Docker started supporting the <code>DOCKER_HOST</code> environment variable, the actual IP address was less important and consequently made the docker command on non-Linux distros feel almost native.</p>
+
 <h2>
 <a name="-tldr-for-mac-users" class="anchor" href="#-tldr-for-mac-users"><span class="octicon octicon-link"></span></a><a name="mac-tl-dr"></a> tl;dr for Mac Users</h2>
 
@@ -79,9 +81,9 @@ brew cask install virtualbox --appdir<span class="o">=</span>/Applications
 
 <p>Installation is supported for any Unixlike platform that Vagrant and VirtualBox/VMware support.</p>
 
-<div class="highlight highlight-sh"><pre>wget -O dvm-0.4.1.tar.gz https://github.com/fnichol/dvm/archive/v0.4.1.tar.gz
-tar -xzvf dvm-0.4.1.tar.gz
-<span class="nb">cd </span>dvm-0.4.1/
+<div class="highlight highlight-sh"><pre>wget -O dvm-0.5.0.tar.gz https://github.com/fnichol/dvm/archive/v0.5.0.tar.gz
+tar -xzvf dvm-0.5.0.tar.gz
+<span class="nb">cd </span>dvm-0.5.0/
 sudo make install
 </pre></div>
 
@@ -144,7 +146,7 @@ Commands
 <p>Keep in mind that dvm thiny wraps Vagrant so don't hesitate to use raw Vagrant commands in your <code>$HOME/.dvm</code> directory. Or use the <code>dvm vagrant</code> subcommand from anywhere:</p>
 
 <pre><code>$ dvm vagrant --version
-Vagrant 1.4.2
+Vagrant 1.5.2
 </code></pre>
 
 <p>Bring up your VM with <code>dvm up</code>:</p>
@@ -217,8 +219,9 @@ simply run `vagrant up`.
 | '_ \ / _ \ / _ \| __| __) / _` |/ _ \ / __| |/ / _ \ '__|
 | |_) | (_) | (_) | |_ / __/ (_| | (_) | (__|   &lt;  __/ |
 |_.__/ \___/ \___/ \__|_____\__,_|\___/ \___|_|\_\___|_|
+boot2docker: 0.8.0
 docker@boot2docker:~$ uname -a
-Linux boot2docker 3.12.1-tinycore64 #1 SMP Sun Dec 8 19:38:19 UTC 2013 x86_64 GNU/Linux
+Linux boot2docker 3.13.3-tinycore64 #1 SMP Wed Mar 26 03:16:13 UTC 2014 x86_64 GNU/Linux
 docker@boot2docker:~$
 </code></pre>
 
@@ -245,9 +248,14 @@ docker@boot2docker:~$
 <li>
 <code>DOCKER_MEMORY</code>: <code>512</code> (in MB)</li>
 <li>
+<code>DOCKER_CPUS</code>: <code>1</code>
+</li>
+<li>
 <code>DOCKER_ARGS</code>: <code>-H unix:// -H tcp://</code>
 </li>
-</ul><p>See <a href="https://github.com/fnichol/dvm/blob/master/dvm.conf">dvm.conf</a> for more details.</p>
+</ul><p>If you wish to change the network range Docker uses for the <code>docker0</code> bridge, set <code>DOCKER0_CIDR</code> to the range required.</p>
+
+<p>See <a href="https://github.com/fnichol/dvm/blob/master/dvm.conf">dvm.conf</a> for more details.</p>
 
 <h2>
 <a name="-development" class="anchor" href="#-development"><span class="octicon octicon-link"></span></a><a name="development"></a> Development</h2>
