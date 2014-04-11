@@ -89,20 +89,26 @@ exec_vagrant() {
 }
 
 check() {
-  if command -v docker >/dev/null ; then
-    banner "Docker install detected"
+  local virt_found=""
+  local mac_vmware="/Applications/VMware Fusion.app/Contents/Library/vmnet-cli"
+
+  if command -v VBoxManage >/dev/null ; then virt_found=1 ; fi
+  if [ "$(uname -s)" = "Darwin" -a -f "$mac_vmware" ] ; then virt_found=1 ; fi
+
+  if [ -n "$virt_found" ] ; then
+    banner "VirtualBox or VMware install detected"
   else
-    fail "'docker' was not found in PATH, please install Docker."
-  fi
-  if command -v VBoxManage >/dev/null ; then
-    banner "VirtualBox install detected"
-  else
-    fail "'VBoxManage' was not found in PATH, please install VirtualBox."
+    fail "Neither VirtualBox nor VMware install was detected, please install."
   fi
   if command -v vagrant >/dev/null ; then
     banner "Vagrant install detected"
   else
     fail "'vagrant' was not found in PATH, please install Vagrant."
+  fi
+  if command -v docker >/dev/null ; then
+    banner "Docker install detected"
+  else
+    fail "'docker' was not found in PATH, please install Docker."
   fi
   banner 'Ready to go!'
 }
