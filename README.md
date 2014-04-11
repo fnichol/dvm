@@ -112,7 +112,7 @@ Keep in mind that dvm thiny wraps Vagrant so don't hesitate to use raw Vagrant c
 
 ```
 $ dvm vagrant --version
-Vagrant 1.4.2
+Vagrant 1.5.2
 ```
 
 Bring up your VM with `dvm up`:
@@ -192,8 +192,9 @@ $ dvm ssh
 | '_ \ / _ \ / _ \| __| __) / _` |/ _ \ / __| |/ / _ \ '__|
 | |_) | (_) | (_) | |_ / __/ (_| | (_) | (__|   <  __/ |
 |_.__/ \___/ \___/ \__|_____\__,_|\___/ \___|_|\_\___|_|
+boot2docker: 0.8.0
 docker@boot2docker:~$ uname -a
-Linux boot2docker 3.12.1-tinycore64 #1 SMP Sun Dec 8 19:38:19 UTC 2013 x86_64 GNU/Linux
+Linux boot2docker 3.13.3-tinycore64 #1 SMP Wed Mar 26 03:16:13 UTC 2014 x86_64 GNU/Linux
 docker@boot2docker:~$
 ```
 
