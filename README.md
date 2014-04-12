@@ -108,7 +108,7 @@ Commands
   vagrant         Issue subcommands directly to the vagrant CLI
 ```
 
-Keep in mind that dvm thiny wraps Vagrant so don't hesitate to use raw Vagrant commands in your `$HOME/.dvm` directory. Or use the `dvm vagrant` subcommand from anywhere:
+Keep in mind that dvm thinly wraps Vagrant so don't hesitate to use raw Vagrant commands in your `$HOME/.dvm` directory. Or use the `dvm vagrant` subcommand from anywhere:
 
 ```
 $ dvm vagrant --version
@@ -140,7 +140,7 @@ $ dvm suspend
 [dvm] Saving VM state and suspending execution...
 ```
 
-When you come back to your Dockerawesome project resume your VM with `dvm resume`:
+When you come back to your awesome Docker project, resume your VM with `dvm resume`:
 
 ```
 $ dvm resume
@@ -200,7 +200,7 @@ docker@boot2docker:~$
 
 ## <a name="usage-embedded"></a> Embed in a Project
 
-As the core of dvm is a Vagranfile (surprise!) you can simply download the dvm Vagrantfile into your project using the http://git.io/dvm-vagrantfile shortlink:
+As the core of dvm is a Vagranfile (surprise!), you can simply download the dvm Vagrantfile into your project using the http://git.io/dvm-vagrantfile shortlink:
 
 ```sh
 wget -O Vagrantfile http://git.io/dvm-vagrantfile
@@ -255,7 +255,7 @@ Apache 2.0 (see [LICENSE.txt][license])
 [issues]:       https://github.com/fnichol/dvm/issues
 
 [docker]:         http://www.docker.io/
-[docker_api]:     http://docs.docker.io/en/latest/api/docker_remote_api/
+[docker_api]:     http://docs.docker.io/en/latest/reference/api/docker_remote_api
 [docker_dl]:      http://docs.docker.io/en/latest/installation/
 [dvm_conf]:       https://github.com/fnichol/dvm/blob/master/dvm.conf
 [homebrew_dvm]:   https://github.com/fnichol/homebrew-dvm
