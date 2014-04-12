@@ -68,7 +68,7 @@ docker run ubuntu cat /etc/lsb-release
 </li>
 <li>
 <a href="http://www.vagrantup.com/downloads.html">Vagrant</a>, version 1.4.0+</li>
-<li>(<em>Optional</em>) <a href="http://docs.docker.io/en/latest/installation/">Docker</a>, version 0.7.3+ or use the <a href="http://docs.docker.io/en/latest/api/docker_remote_api/">Docker Remote API</a>
+<li>(<em>Optional</em>) <a href="http://docs.docker.io/en/latest/installation/">Docker</a>, version 0.7.3+ or use the <a href="http://docs.docker.io/en/latest/reference/api/docker_remote_api">Docker Remote API</a>
 </li>
 </ul><p>Use <a href="https://github.com/phinze/homebrew-cask">Homebrew Cask</a>? For Vagrant and VirtualBox, too easy!</p>
 
@@ -143,7 +143,7 @@ Commands
   vagrant         Issue subcommands directly to the vagrant CLI
 </code></pre>
 
-<p>Keep in mind that dvm thiny wraps Vagrant so don't hesitate to use raw Vagrant commands in your <code>$HOME/.dvm</code> directory. Or use the <code>dvm vagrant</code> subcommand from anywhere:</p>
+<p>Keep in mind that dvm thinly wraps Vagrant so don't hesitate to use raw Vagrant commands in your <code>$HOME/.dvm</code> directory. Or use the <code>dvm vagrant</code> subcommand from anywhere:</p>
 
 <pre><code>$ dvm vagrant --version
 Vagrant 1.5.2
@@ -171,7 +171,7 @@ Bringing machine 'dvm' up with 'virtualbox' provider...
 [dvm] Saving VM state and suspending execution...
 </code></pre>
 
-<p>When you come back to your Dockerawesome project resume your VM with <code>dvm resume</code>:</p>
+<p>When you come back to your awesome Docker project, resume your VM with <code>dvm resume</code>:</p>
 
 <pre><code>$ dvm resume
 [dvm] Resuming suspended VM...
@@ -228,7 +228,7 @@ docker@boot2docker:~$
 <h2>
 <a name="-embed-in-a-project" class="anchor" href="#-embed-in-a-project"><span class="octicon octicon-link"></span></a><a name="usage-embedded"></a> Embed in a Project</h2>
 
-<p>As the core of dvm is a Vagranfile (surprise!) you can simply download the dvm Vagrantfile into your project using the <a href="http://git.io/dvm-vagrantfile">http://git.io/dvm-vagrantfile</a> shortlink:</p>
+<p>As the core of dvm is a Vagranfile (surprise!), you can simply download the dvm Vagrantfile into your project using the <a href="http://git.io/dvm-vagrantfile">http://git.io/dvm-vagrantfile</a> shortlink:</p>
 
 <div class="highlight highlight-sh"><pre>wget -O Vagrantfile http://git.io/dvm-vagrantfile
 </pre></div>
