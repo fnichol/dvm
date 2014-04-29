@@ -90,8 +90,10 @@ module VagrantPlugins
             machine.communicate.tap do |comm|
               networks.each do |n|
                 ifc = "/sbin/ifconfig eth#{n[:interface]}"
+                pid = "/var/run/udhcpc.eth#{n[:interface]}.pid"
                 broadcast = (IPAddr.new(n[:ip]) | (~ IPAddr.new(n[:netmask]))).to_s
                 comm.sudo("#{ifc} down")
+                comm.sudo("if [ -f '#{pid}' ]; then kill `cat #{pid}` && rm -f '#{pid}'; fi")
                 comm.sudo("#{ifc} #{n[:ip]} netmask #{n[:netmask]} broadcast #{broadcast}")
                 comm.sudo("#{ifc} up")
               end
