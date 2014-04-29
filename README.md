@@ -31,7 +31,7 @@ p.s. No Vagrant or VirtualBox installed? Check out the [Requirements](#requireme
 
 ## <a name="requirements"></a> Requirements
 
-* [VirtualBox][virtualbox_dl], version 4.3.4+ or [VMware Fusion](vmware_fusion_dl)/[VMware Workstation][vmware_workstation_dl]
+* [VirtualBox][virtualbox_dl], version 4.3.4+ or [VMware Fusion][vmware_fusion_dl]/[VMware Workstation][vmware_workstation_dl]
 * [Vagrant][vagrant_dl], version 1.4.0+
 * (*Optional*) [Docker][docker_dl], version 0.7.3+ or use the [Docker Remote API][docker_api]
 
