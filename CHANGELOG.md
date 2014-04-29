@@ -1,3 +1,17 @@
+## 0.5.1 / 2014-04-29
+
+### Bug fixes
+
+* Pull request [#35][], issue [#8][], issue [#24][], issue [#28][]: Ensure udhcpc is not running for statically defined eth1 interface. ([@fnichol][], [@adamleko][])
+* Issue [#33][]: Fix `DOCKER_HOST` variable support under boot2docker 0.8.0. ([@fnichol][])
+* Pull request [#31][]: In README, fix link to Docker Remote API. ([@dougireton][])
+
+### Improvements
+
+* Issue [#32][]: Fix VMware Fusion link in READER. ([@fnichol][])
+* Conditionally implement TinyCore Linux Vagrant plugin if required. ([@fnichol][])
+
+
 ## 0.5.0 / 2014-04-14
 
 ### Bug fixes
@@ -93,6 +107,7 @@ The initial release.
 [#3]: https://github.com/fnichol/dvm/issues/3
 [#5]: https://github.com/fnichol/dvm/issues/5
 [#6]: https://github.com/fnichol/dvm/issues/6
+[#8]: https://github.com/fnichol/dvm/issues/8
 [#10]: https://github.com/fnichol/dvm/issues/10
 [#11]: https://github.com/fnichol/dvm/issues/11
 [#17]: https://github.com/fnichol/dvm/issues/17
@@ -100,9 +115,17 @@ The initial release.
 [#20]: https://github.com/fnichol/dvm/issues/20
 [#21]: https://github.com/fnichol/dvm/issues/21
 [#22]: https://github.com/fnichol/dvm/issues/22
+[#24]: https://github.com/fnichol/dvm/issues/24
+[#28]: https://github.com/fnichol/dvm/issues/28
 [#29]: https://github.com/fnichol/dvm/issues/29
 [#30]: https://github.com/fnichol/dvm/issues/30
+[#31]: https://github.com/fnichol/dvm/issues/31
+[#32]: https://github.com/fnichol/dvm/issues/32
+[#33]: https://github.com/fnichol/dvm/issues/33
+[#35]: https://github.com/fnichol/dvm/issues/35
+[@adamleko]: https://github.com/adamleko
 [@agoddard]: https://github.com/agoddard
+[@dougireton]: https://github.com/dougireton
 [@fnichol]: https://github.com/fnichol
 [@gianpaj]: https://github.com/gianpaj
 [@hiremaga]: https://github.com/hiremaga
