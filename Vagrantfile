@@ -46,37 +46,45 @@ unless cidr.empty?
   BRIDGE_SETUP
 end
 
+def tinycore_supported?
+  Gem::Version.new(Vagrant::VERSION) >= Gem::Version.new("1.5.0")
+end
+
 module VagrantPlugins
-  module GuestDvmTcl
+  module GuestTinyCore
     module Cap ; end
 
     class Plugin < Vagrant.plugin("2")
-      name "Core Linux guest"
-      description "Core Linux guest support"
+      name "TinyCore Linux guest."
+      description "TinyCore Linux guest support."
 
-      guest("tcl", "linux") do
-        class ::VagrantPlugins::GuestDvmTcl::Guest < Vagrant.plugin("2", :guest)
-          def detect?(machine)
-            machine.communicate.test("cat /etc/issue | grep 'Core Linux'")
+      if !tinycore_supported?
+        guest("tinycore", "linux") do
+          class ::VagrantPlugins::GuestTinyCore::Guest < Vagrant.plugin("2", :guest)
+            def detect?(machine)
+              machine.communicate.test("cat /etc/issue | grep 'Core Linux'")
+            end
           end
+          Guest
         end
-        Guest
       end
 
-      guest_capability("tcl", "halt") do
-        class ::VagrantPlugins::GuestDvmTcl::Cap::Halt
-          def self.halt(machine)
-            machine.communicate.sudo("poweroff")
-          rescue IOError
-            # Do nothing, because it probably means the machine shut down
-            # and SSH connection was lost.
+      if !tinycore_supported?
+        guest_capability("tinycore", "halt") do
+          class ::VagrantPlugins::GuestTinyCore::Cap::Halt
+            def self.halt(machine)
+              machine.communicate.sudo("poweroff")
+            rescue IOError
+              # Do nothing, because it probably means the machine shut down
+              # and SSH connection was lost.
+            end
           end
+          Cap::Halt
         end
-        Cap::Halt
       end
 
-      guest_capability("tcl", "configure_networks") do
-        class ::VagrantPlugins::GuestDvmTcl::Cap::ConfigureNetworks
+      guest_capability("tinycore", "configure_networks") do
+        class ::VagrantPlugins::GuestTinyCore::Cap::ConfigureNetworks
           def self.configure_networks(machine, networks)
             require 'ipaddr'
             machine.communicate.tap do |comm|
