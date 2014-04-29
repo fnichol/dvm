@@ -130,8 +130,9 @@ Vagrant.configure("2") do |config|
     INITD=/usr/local/etc/init.d/docker
     #{docker0_bridge_setup}
     if [ '#{port}' -ne '4243' ]; then
-      echo "---> Configuring docker to listen on port '#{port}'"
-      sudo sed -i -e 's|\\(DOCKER_HOST="tcp://0.0.0.0:\\)4243|\1#{port}|' $INITD
+      echo "---> Configuring docker to listen on port '#{port}' and restarting"
+      sudo sed -i -e 's|\\(DOCKER_HOST="-H tcp://0.0.0.0:\\)4243|\\1#{port}|' $INITD
+      sudo $INITD restart
     fi
     if [ -n '#{args}' ]; then
       echo "---> Configuring docker with args '#{args}' and restarting"
