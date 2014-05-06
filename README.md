@@ -6,7 +6,7 @@ The driving need for something like dvm was for running infrastructure testing, 
 
 ## <a name="mac-tl-dr"></a> tl;dr for Mac Users
 
-Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!
+Are you already a Vagrant user using Virtualbox? Use Homebrevw? Great!
 
 
 ```sh
@@ -200,7 +200,7 @@ docker@boot2docker:~$
 
 ## <a name="usage-embedded"></a> Embed in a Project
 
-As the core of dvm is a Vagranfile (surprise!), you can simply download the dvm Vagrantfile into your project using the http://git.io/dvm-vagrantfile shortlink:
+As the core of dvm is a Vagrantfile (surprise!), you can simply download the dvm Vagrantfile into your project using the http://git.io/dvm-vagrantfile shortlink:
 
 ```sh
 wget -O Vagrantfile http://git.io/dvm-vagrantfile
