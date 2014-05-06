@@ -6,7 +6,7 @@ The driving need for something like dvm was for running infrastructure testing, 
 
 ## <a name="mac-tl-dr"></a> tl;dr for Mac Users
 
-Are you already a Vagrant user using Virtualbox? Use Homebrevw? Great!
+Are you already a Vagrant user using Virtualbox? Use Homebrew? Great!
 
 
 ```sh
