@@ -200,7 +200,7 @@ docker@boot2docker:~$
 
 ## <a name="usage-embedded"></a> Embed in a Project
 
-As the core of dvm is a Vagranfile (surprise!), you can simply download the dvm Vagrantfile into your project using the http://git.io/dvm-vagrantfile shortlink:
+As the core of dvm is a Vagrantfile (surprise!), you can simply download the dvm Vagrantfile into your project using the http://git.io/dvm-vagrantfile shortlink:
 
 ```sh
 wget -O Vagrantfile http://git.io/dvm-vagrantfile
