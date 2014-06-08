@@ -5,7 +5,7 @@ set -e
 
 usage() {
   printf "
-Usage: $(basename $0) [-v|-h] command [<args>]
+Usage: $(basename "$0") [-v|-h] command [<args>]
 
 Options
 
@@ -39,17 +39,17 @@ fail() {
 }
 
 resolve_link() {
-  $(type -p greadlink readlink | head -1) "$1"
+  "$(type -p greadlink readlink | head -1)" "$1"
 }
 
 abs_dirname() {
-  local cwd="$(pwd)"
-  local path="$1"
+  local cwd=$(pwd)
+  local path=$1
 
   while [ -n "$path" ]; do
     cd "${path%/*}"
-    local name="${path##*/}"
-    path="$(resolve_link "$name" || true)"
+    local name=${path##*/}
+    path=$(resolve_link "$name" || true)
   done
 
   pwd
@@ -57,11 +57,11 @@ abs_dirname() {
 }
 
 project_path() {
-  local parent_path="$(dirname $(abs_dirname $0))"
-  local home_dvm_path="$HOME/.dvm"
+  local parent_path=$(dirname "$(abs_dirname "$0")")
+  local home_dvm_path=$HOME/.dvm
 
   if [ -f "$VAGRANTFILE" ] ; then
-    echo "$(abs_dirname $VAGRANTFILE)"
+    echo "$(abs_dirname "$VAGRANTFILE")"
   elif [ -f "$parent_path/Vagrantfile" ] ; then
     echo "$parent_path"
   elif [ -f "$home_dvm_path/Vagrantfile" ] ; then
@@ -73,7 +73,7 @@ project_path() {
 
 load_conf() {
   if [ -f "$project_path/dvm.conf" ] ; then
-    source $project_path/dvm.conf
+    source "$project_path/dvm.conf"
   fi
 }
 
@@ -81,11 +81,11 @@ exec_vagrant() {
   load_conf
 
   if [ -f "$VAGRANTFILE" ] ; then
-    export VAGRANT_VAGRANTFILE="$(basename $VAGRANTFILE)"
+    export VAGRANT_VAGRANTFILE=$(basename "$VAGRANTFILE")
   fi
 
   cd $project_path
-  exec vagrant $*
+  exec vagrant "$@"
 }
 
 check() {
@@ -128,15 +128,15 @@ case "$1" in
   --version|-v)         echo "$(basename $0): $DVM_VERSION";;
   --help|-h|help)       usage;;
   check|c*)             check;;
-  destroy|d*)           shift; exec_vagrant destroy $*;;
+  destroy|d*)           shift; exec_vagrant destroy "$@";;
   env|e*)               setup_env;;
-  halt|h*|stop|sto*)    shift; exec_vagrant halt $*;;
-  reload|rel*)          shift; exec_vagrant reload --provision $*;;
-  resume|res*)          shift; exec_vagrant resume $*;;
-  ssh|ss*)              shift; exec_vagrant ssh $*;;
-  status|stat*)         shift; exec_vagrant status $*;;
-  suspend|su*|pause|p)  shift; exec_vagrant suspend $*;;
-  up|u*|start|star*)    shift; exec_vagrant up --provision $*;;
-  vagrant|v*)           shift; exec_vagrant $*;;
+  halt|h*|stop|sto*)    shift; exec_vagrant halt "$@";;
+  reload|rel*)          shift; exec_vagrant reload --provision "$@";;
+  resume|res*)          shift; exec_vagrant resume "$@";;
+  ssh|ss*)              shift; exec_vagrant ssh "$@";;
+  status|stat*)         shift; exec_vagrant status "$@";;
+  suspend|su*|pause|p)  shift; exec_vagrant suspend "$@";;
+  up|u*|start|star*)    shift; exec_vagrant up --provision "$@";;
+  vagrant|v*)           shift; exec_vagrant "$@";;
   *)                    usage; exit 1;;
 esac
