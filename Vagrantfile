@@ -122,7 +122,7 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  args = "EXTRA_ARGS=#{shq args.strip}" unless args.empty?
+  args = "export EXTRA_ARGS=#{shq args.strip}" unless args.empty?
 
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
