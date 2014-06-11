@@ -31,7 +31,7 @@ p.s. No Vagrant or VirtualBox installed? Check out the [Requirements](#requireme
 
 ## <a name="requirements"></a> Requirements
 
-* [VirtualBox][virtualbox_dl], version 4.3.4+ or [VMware Fusion][vmware_fusion_dl]/[VMware Workstation][vmware_workstation_dl]
+* [VirtualBox][virtualbox_dl], version 4.3.4+, [VMware Fusion][vmware_fusion_dl]/[VMware Workstation][vmware_workstation_dl], or [Parallels Desktop][parallels_dl]
 * [Vagrant][vagrant_dl], version 1.4.0+
 * (*Optional*) [Docker][docker_dl], version 0.7.3+ or use the [Docker Remote API][docker_api]
 
@@ -263,6 +263,7 @@ Apache 2.0 (see [LICENSE.txt][license])
 [homebrew_dvm]:   https://github.com/fnichol/homebrew-dvm
 [kitchenci]:      http://kitchen.ci
 [kitchen_docker]: https://github.com/portertech/kitchen-docker
+[parallels_dl]:   http://www.parallels.com/ca/products/desktop/
 [vagrant]:        http://www.vagrantup.com/
 [vagrant_dl]:     http://www.vagrantup.com/downloads.html
 [vmware_fusion_dl]: http://www.vmware.com/go/downloadfusion
