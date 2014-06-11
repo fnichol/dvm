@@ -1,5 +1,5 @@
 NAME=dvm
-VERSION=0.5.1
+VERSION=0.6.0
 AUTHOR=fnichol
 URL=https://github.com/$(AUTHOR)/$(NAME)
 

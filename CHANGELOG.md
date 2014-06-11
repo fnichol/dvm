@@ -1,3 +1,20 @@
+## 0.6.0 / 2014-06-11
+
+### Bug fixes
+
+* Pull request [#41][]: Fix `DOCKER_ARGS` and various other shell-quoting bugs. ([@dlitz][])
+
+### New features
+
+* Upgrade to [boot2docker 1.0.0](https://github.com/boot2docker/boot2docker/releases/tag/v1.0.0) with new Docker IANA port (2375). ([@fnichol][], [@spheromak][])
+* Add support for Parallels Desktop. ([@fnichol][])
+
+### Improvements
+
+* Disable local Docker forwarded port. ([@fnichol][])
+* Pull request [#37][]: README updates. ([@eik3][])
+
+
 ## 0.5.1 / 2014-04-29
 
 ### Bug fixes
@@ -123,9 +140,13 @@ The initial release.
 [#32]: https://github.com/fnichol/dvm/issues/32
 [#33]: https://github.com/fnichol/dvm/issues/33
 [#35]: https://github.com/fnichol/dvm/issues/35
+[#37]: https://github.com/fnichol/dvm/issues/37
+[#41]: https://github.com/fnichol/dvm/issues/41
 [@adamleko]: https://github.com/adamleko
 [@agoddard]: https://github.com/agoddard
+[@dlitz]: https://github.com/dlitz
 [@dougireton]: https://github.com/dougireton
+[@eik3]: https://github.com/eik3
 [@fnichol]: https://github.com/fnichol
 [@gianpaj]: https://github.com/gianpaj
 [@hiremaga]: https://github.com/hiremaga
@@ -133,5 +154,6 @@ The initial release.
 [@jfoy]: https://github.com/jfoy
 [@mitchellh]: https://github.com/mitchellh
 [@rubbish]: https://github.com/rubbish
+[@spheromak]: https://github.com/spheromak
 [@tlockney]: https://github.com/tlockney
 [@yacn]: https://github.com/yacn
