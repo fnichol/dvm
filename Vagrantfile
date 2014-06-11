@@ -24,7 +24,7 @@ unless cidr.empty?
   as_docker_usr     = 'su - docker -c'
   dl_dir            = '/home/docker'
   filename          = 'bridge-utils.tcz'
-  dl_br_utils       = "wget -P #{dl_dir} -O #{filename} #{shq bridge_utils_url}"
+  dl_br_utils       = "wget -P #{dl_dir} -O #{filename} #{shq(bridge_utils_url)}"
   install_br_utils  = "tce-load -i #{dl_dir}/#{filename}"
   brctl             = '/usr/local/sbin/brctl'
   ifcfg             = '/sbin/ifconfig'
@@ -33,10 +33,10 @@ unless cidr.empty?
 
   docker0_bridge_setup = <<-BRIDGE_SETUP
     sudo $INITD stop
-    echo #{shq "#{as_docker_usr} #{shq dl_br_utils}"}
-    #{as_docker_usr} #{shq dl_br_utils}
-    echo #{shq "#{as_docker_usr} #{shq install_br_utils}"}
-    #{as_docker_usr} #{shq install_br_utils}
+    echo #{shq("#{as_docker_usr} #{shq(dl_br_utils)}")}
+    #{as_docker_usr} #{shq(dl_br_utils)}
+    echo #{shq("#{as_docker_usr} #{shq(install_br_utils)}")}
+    #{as_docker_usr} #{shq(install_br_utils)}
     sudo #{take_docker0_down}
     sudo #{delete_docker0}
   BRIDGE_SETUP
@@ -122,7 +122,7 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  args = "export EXTRA_ARGS=#{shq args.strip}" unless args.empty?
+  args = "export EXTRA_ARGS=#{shq(args.strip)}" unless args.empty?
 
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
@@ -132,9 +132,9 @@ Vagrant.configure("2") do |config|
       sudo sed -i -e 's|\\(DOCKER_HOST="-H tcp://0.0.0.0:\\)4243|\\1#{port}|' $INITD
       sudo $INITD restart
     fi
-    if [ -n #{shq args} ]; then
-      echo '---> Configuring docker with args "'#{shq args}'" and restarting'
-      echo #{shq args} > /var/lib/boot2docker/profile
+    if [ -n #{shq(args)} ]; then
+      echo '---> Configuring docker with args "'#{shq(args)}'" and restarting'
+      echo #{shq(args)} > /var/lib/boot2docker/profile
       sudo $INITD restart
     fi
     if ! grep -q '8\.8\.8\.8' /etc/resolv.conf >/dev/null; then
