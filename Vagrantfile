@@ -5,6 +5,10 @@
 #  For more details, please visit http://fnichol.github.io/dvm
 #
 
+def shq(s)  # sh(1)-style quoting
+  sprintf("'%s'", s.gsub(/'/, "'\\\\''"))
+end
+
 ip      = ENV.fetch("DOCKER_IP", "192.168.42.43")
 port    = ENV.fetch("DOCKER_PORT", "4243")
 memory  = ENV.fetch("DOCKER_MEMORY", "512")
@@ -12,23 +16,15 @@ cpus    = ENV.fetch("DOCKER_CPUS", "1")
 cidr    = ENV.fetch("DOCKER0_CIDR", "")
 args    = ENV.fetch("DOCKER_ARGS", "")
 
-unless args.empty?
-  args = "EXTRA_ARGS=#{args}"
-end
-
 docker0_bridge_setup = ""
 bridge_utils_url     = "ftp://ftp.nl.netbsd.org/vol/2/metalab/distributions/tinycorelinux/4.x/x86/tcz/bridge-utils.tcz"
 unless cidr.empty?
-  if args.empty?
-    args = "EXTRA_ARGS='--bip=#{cidr}'"
-  else
-    args += " --bip=#{cidr}"
-  end
+  args += " --bip=#{cidr}"
 
   as_docker_usr     = 'su - docker -c'
   dl_dir            = '/home/docker'
   filename          = 'bridge-utils.tcz'
-  dl_br_utils       = "wget -P #{dl_dir} -O #{filename} #{bridge_utils_url}"
+  dl_br_utils       = "wget -P #{dl_dir} -O #{filename} #{shq(bridge_utils_url)}"
   install_br_utils  = "tce-load -i #{dl_dir}/#{filename}"
   brctl             = '/usr/local/sbin/brctl'
   ifcfg             = '/sbin/ifconfig'
@@ -37,10 +33,10 @@ unless cidr.empty?
 
   docker0_bridge_setup = <<-BRIDGE_SETUP
     sudo $INITD stop
-    echo '#{as_docker_usr} "#{dl_br_utils}"'
-    #{as_docker_usr} "#{dl_br_utils}"
-    echo '#{as_docker_usr} "#{install_br_utils}"'
-    #{as_docker_usr} "#{install_br_utils}"
+    echo #{shq("#{as_docker_usr} #{shq(dl_br_utils)}")}
+    #{as_docker_usr} #{shq(dl_br_utils)}
+    echo #{shq("#{as_docker_usr} #{shq(install_br_utils)}")}
+    #{as_docker_usr} #{shq(install_br_utils)}
     sudo #{take_docker0_down}
     sudo #{delete_docker0}
   BRIDGE_SETUP
@@ -93,7 +89,7 @@ module VagrantPlugins
                 pid = "/var/run/udhcpc.eth#{n[:interface]}.pid"
                 broadcast = (IPAddr.new(n[:ip]) | (~ IPAddr.new(n[:netmask]))).to_s
                 comm.sudo("#{ifc} down")
-                comm.sudo("if [ -f '#{pid}' ]; then kill `cat #{pid}` && rm -f '#{pid}'; fi")
+                comm.sudo("if [ -f #{pid} ]; then kill `cat #{pid}` && rm -f #{pid}; fi")
                 comm.sudo("#{ifc} #{n[:ip]} netmask #{n[:netmask]} broadcast #{broadcast}")
                 comm.sudo("#{ifc} up")
               end
@@ -126,17 +122,19 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  args = "export EXTRA_ARGS=#{shq(args.strip)}" unless args.empty?
+
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
     #{docker0_bridge_setup}
-    if [ '#{port}' -ne '4243' ]; then
+    if [ #{port} -ne '4243' ]; then
       echo "---> Configuring docker to listen on port '#{port}' and restarting"
       sudo sed -i -e 's|\\(DOCKER_HOST="-H tcp://0.0.0.0:\\)4243|\\1#{port}|' $INITD
       sudo $INITD restart
     fi
-    if [ -n '#{args}' ]; then
-      echo "---> Configuring docker with args '#{args}' and restarting"
-      echo '#{args}' > /var/lib/boot2docker/profile
+    if [ -n #{shq(args)} ]; then
+      echo '---> Configuring docker with args "'#{shq(args)}'" and restarting'
+      echo #{shq(args)} > /var/lib/boot2docker/profile
       sudo $INITD restart
     fi
     if ! grep -q '8\.8\.8\.8' /etc/resolv.conf >/dev/null; then
