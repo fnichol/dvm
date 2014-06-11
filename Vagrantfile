@@ -107,6 +107,8 @@ end
 
 Vagrant.configure("2") do |config|
   config.vm.box = "boot2docker-#{b2d_version}"
+  config.vm.network "forwarded_port",
+    guest: 2375, host: 2375, id: "docker", disabled: true
   config.vm.network "private_network", :ip => ip
 
   config.vm.provider :virtualbox do |v, override|
