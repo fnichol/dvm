@@ -127,7 +127,13 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  args = "export EXTRA_ARGS=#{shq(args.strip)}" unless args.empty?
+  config.vm.provider :parallels do |v, override|
+    override.vm.box_url = "#{release_url}/boot2docker_parallels.box"
+    v.memory = Integer(memory)
+    v.cpus = Integer(cpus)
+  end
+
+  args = "export EXTRA_ARGS=#{shq args.strip}" unless args.empty?
 
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
