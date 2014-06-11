@@ -10,11 +10,14 @@ def shq(s)  # sh(1)-style quoting
 end
 
 ip      = ENV.fetch("DOCKER_IP", "192.168.42.43")
-port    = ENV.fetch("DOCKER_PORT", "4243")
+port    = ENV.fetch("DOCKER_PORT", "2375")
 memory  = ENV.fetch("DOCKER_MEMORY", "512")
 cpus    = ENV.fetch("DOCKER_CPUS", "1")
 cidr    = ENV.fetch("DOCKER0_CIDR", "")
 args    = ENV.fetch("DOCKER_ARGS", "")
+
+b2d_version = "1.0.0"
+release_url = "https://github.com/fnichol/boot2docker-vagrant-box/releases/download/v#{b2d_version}"
 
 docker0_bridge_setup = ""
 bridge_utils_url     = "ftp://ftp.nl.netbsd.org/vol/2/metalab/distributions/tinycorelinux/4.x/x86/tcz/bridge-utils.tcz"
@@ -103,11 +106,11 @@ module VagrantPlugins
 end
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "boot2docker-0.9.0"
+  config.vm.box = "boot2docker-#{b2d_version}"
   config.vm.network "private_network", :ip => ip
 
   config.vm.provider :virtualbox do |v, override|
-    override.vm.box_url = "https://github.com/mitchellh/boot2docker-vagrant-box/releases/download/v0.9.0/boot2docker_virtualbox.box"
+    override.vm.box_url = "#{release_url}/boot2docker_virtualbox.box"
     v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     v.customize ["modifyvm", :id, "--memory", Integer(memory)]
@@ -116,7 +119,7 @@ Vagrant.configure("2") do |config|
 
   ["vmware_fusion", "vmware_workstation"].each do |vmware|
     config.vm.provider vmware do |v, override|
-      override.vm.box_url = "https://github.com/mitchellh/boot2docker-vagrant-box/releases/download/v0.9.0/boot2docker_vmware.box"
+      override.vm.box_url = "#{release_url}/boot2docker_vmware.box"
       v.vmx["memsize"] = Integer(memory)
       v.vmx["numvcpus"] = Integer(cpus)
     end
@@ -127,9 +130,9 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
     #{docker0_bridge_setup}
-    if [ #{port} -ne '4243' ]; then
+    if [ #{port} -ne '2375' ]; then
       echo "---> Configuring docker to listen on port '#{port}' and restarting"
-      sudo sed -i -e 's|\\(DOCKER_HOST="-H tcp://0.0.0.0:\\)4243|\\1#{port}|' $INITD
+      sudo sed -i -e 's|\\(DOCKER_HOST="-H tcp://0.0.0.0:\\)2375|\\1#{port}|' $INITD
       sudo $INITD restart
     fi
     if [ -n #{shq(args)} ]; then
@@ -140,6 +143,7 @@ Vagrant.configure("2") do |config|
     if ! grep -q '8\.8\.8\.8' /etc/resolv.conf >/dev/null; then
       echo "nameserver 8.8.8.8" >> /etc/resolv.conf
     fi
+    echo "boot2docker: $(cat /etc/version)"
   PREPARE
   config.vm.define :dvm
 end

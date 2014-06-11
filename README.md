@@ -121,10 +121,9 @@ Bring up your VM with `dvm up`:
 $ dvm up
 Bringing machine 'dvm' up with 'virtualbox' provider...
 ...<snip>...
-[dvm] Configuring and enabling network interfaces...
-[dvm] Running provisioner: shell...
-[dvm] Running: inline script
----> Configuring docker to bind to tcp/4243 and restarting
+==> dvm: Configuring and enabling network interfaces...
+==> dvm: Running provisioner: shell...
+    dvm: Running: inline script
 ```
 
 Or maybe you want to use the `vmware_fusion` Vagrant provider which isn't your default?
@@ -137,20 +136,24 @@ Need to free up some memory? Pause your VM with `dvm suspend`:
 
 ```
 $ dvm suspend
-[dvm] Saving VM state and suspending execution...
+==> dvm: Saving VM state and suspending execution...
 ```
 
 When you come back to your awesome Docker project, resume your VM with `dvm resume`:
 
 ```
 $ dvm resume
-[dvm] Resuming suspended VM...
-[dvm] Booting VM...
-[dvm] Waiting for machine to boot. This may take a few minutes...
-[dvm] Machine booted and ready!
+==> dvm: Resuming suspended VM...
+==> dvm: Booting VM...
+==> dvm: Waiting for machine to boot. This may take a few minutes...
+    dvm: SSH address: 127.0.0.1:2222
+    dvm: SSH username: docker
+    dvm: SSH auth method: private key
+    dvm: Warning: Connection refused. Retrying...
+==> dvm: Machine booted and ready!
 ```
 
-Your local `docker` binary needs to be told that it is targetting a remote system and to not try the local Unix socket, which is the default behavior. Version 0.7.3 of Docker introduced the `DOCKER_HOST` environment variable that will set the target Docker host. By default, dvm will run your VM on a private network at **192.168.42.43** with Docker listening on port **4243**. The `dvm env` subcommand will print a suitable `DOCKER_HOST` line that can be used in your environment. If you want this loaded into your session, evaluate the resulting config with:
+Your local `docker` binary needs to be told that it is targetting a remote system and to not try the local Unix socket, which is the default behavior. Version 0.7.3 of Docker introduced the `DOCKER_HOST` environment variable that will set the target Docker host. By default, dvm will run your VM on a private network at **192.168.42.43** with Docker listening on port **2375**. The `dvm env` subcommand will print a suitable `DOCKER_HOST` line that can be used in your environment. If you want this loaded into your session, evaluate the resulting config with:
 
 ```
 $ echo $DOCKER_HOST
@@ -158,7 +161,7 @@ $ echo $DOCKER_HOST
 $ eval `dvm env`
 
 $ echo $DOCKER_HOST
-tcp://192.168.42.43:4243
+tcp://192.168.42.43:2375
 ```
 
 Check your VM status with `dvm status`:
@@ -192,9 +195,8 @@ $ dvm ssh
 | '_ \ / _ \ / _ \| __| __) / _` |/ _ \ / __| |/ / _ \ '__|
 | |_) | (_) | (_) | |_ / __/ (_| | (_) | (__|   <  __/ |
 |_.__/ \___/ \___/ \__|_____\__,_|\___/ \___|_|\_\___|_|
-boot2docker: 0.8.0
-docker@boot2docker:~$ uname -a
-Linux boot2docker 3.13.3-tinycore64 #1 SMP Wed Mar 26 03:16:13 UTC 2014 x86_64 GNU/Linux
+boot2docker: 1.0.0
+             master : 16013ee - Mon Jun  9 16:33:25 UTC 2014
 docker@boot2docker:~$
 ```
 
@@ -211,7 +213,7 @@ wget -O Vagrantfile http://git.io/dvm-vagrantfile
 If you wish to change the Docker TCP port or memory settings of the virtual machine, edit `$HOME/.dvm/dvm.conf` for the configuration to be used. By default the following configuration is used:
 
 * `DOCKER_IP`: `192.168.42.43`
-* `DOCKER_PORT`: `4243`
+* `DOCKER_PORT`: `2375`
 * `DOCKER_MEMORY`: `512` (in MB)
 * `DOCKER_CPUS`: `1`
 * `DOCKER_ARGS`: `-H unix:// -H tcp://`
