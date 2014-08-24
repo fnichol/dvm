@@ -1,3 +1,10 @@
+## 0.9.0 / 2014-08-24
+
+### New features
+
+* Upgrade to [boot2docker 1.2.0](https://github.com/boot2docker/boot2docker/releases/tag/v1.2.0). ([@fnichol][])
+
+
 ## 0.8.0 / 2014-07-03
 
 ### New features
