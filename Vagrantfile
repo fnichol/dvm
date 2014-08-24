@@ -16,7 +16,7 @@ cpus    = ENV.fetch("DOCKER_CPUS", "1")
 cidr    = ENV.fetch("DOCKER0_CIDR", "")
 args    = ENV.fetch("DOCKER_ARGS", "")
 
-b2d_version = "1.1.0"
+b2d_version = "1.2.0"
 release_url = "https://github.com/fnichol/boot2docker-vagrant-box/releases/download/v#{b2d_version}"
 
 docker0_bridge_setup = ""
@@ -137,19 +137,23 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, :inline => <<-PREPARE
     INITD=/usr/local/etc/init.d/docker
+    PROFILE=/var/lib/boot2docker/profile
     #{docker0_bridge_setup}
+    rm -f $PROFILE && touch $PROFILE
     if [ #{port} -ne '2375' ]; then
-      echo "---> Configuring docker to listen on port '#{port}' and restarting"
-      sudo sed -i -e 's|\\(DOCKER_HOST="-H tcp://0.0.0.0:\\)2375|\\1#{port}|' $INITD
-      sudo $INITD restart
+      echo "---> Configuring docker to listen on port '#{port}'"
+      echo "export DOCKER_HOST='-H tcp://0.0.0.0:#{port}'" >> $PROFILE
     fi
     if [ -n #{shq(args)} ]; then
-      echo '---> Configuring docker with args "'#{shq(args)}'" and restarting'
-      echo #{shq(args)} > /var/lib/boot2docker/profile
-      sudo $INITD restart
+      echo '---> Configuring docker with args "'#{shq(args)}'"'
+      echo #{shq(args)} >> $PROFILE
     fi
     if ! grep -q '8\.8\.8\.8' /etc/resolv.conf >/dev/null; then
       echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+    fi
+    if [ -s "$PROFILE" ]; then
+      echo '---> Restarting docker daemon'
+      sudo $INITD restart
     fi
     echo "boot2docker: $(cat /etc/version)"
   PREPARE
