@@ -18,6 +18,7 @@ Commands
   destroy         Stops and deletes all traces of the vagrant machine
   env             Outputs environment variables for Docker to connect remotely
   halt, stop      Stops the vagrant machine
+  ip              Outputs the IP address of the vagrant machine
   reload          Restarts vagrant machine, loads new configuration
   resume          Resume the suspended vagrant machine
   ssh             Connects to the machine via SSH
@@ -113,6 +114,11 @@ check() {
   banner 'Ready to go!'
 }
 
+docker_ip() {
+  load_conf
+  echo "${DOCKER_IP:-192.168.42.43}"
+}
+
 setup_env() {
   load_conf
   if [[ $SHELL =~ .*fish$ ]] ; then
@@ -131,6 +137,7 @@ case "$1" in
   destroy|d*)           shift; exec_vagrant destroy "$@";;
   env|e*)               setup_env;;
   halt|h*|stop|sto*)    shift; exec_vagrant halt "$@";;
+  ip|i*)                docker_ip;;
   reload|rel*)          shift; exec_vagrant reload --provision "$@";;
   resume|res*)          shift; exec_vagrant resume "$@";;
   ssh|ss*)              shift; exec_vagrant ssh "$@";;
