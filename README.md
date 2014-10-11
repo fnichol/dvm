@@ -99,6 +99,7 @@ Commands
   destroy         Stops and deletes all traces of the vagrant machine
   env             Outputs environment variables for Docker to connect remotely
   halt, stop      Stops the vagrant machine
+  ip              Outputs the IP address of the vagrant machine
   reload          Restarts vagrant machine, loads new configuration
   resume          Resume the suspended vagrant machine
   ssh             Connects to the machine via SSH
